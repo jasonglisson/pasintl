@@ -1,0 +1,15 @@
+; $Id: uc_po_condition.info,v 1.2 2009/05/19 17:13:49 jrust Exp $
+name = UC P.O. Condition
+description = Add PO Boxes as a Conditional Action
+dependencies[] = uc_order
+package = Ubercart - extra
+core = 7.x
+project = "uc_po_condition"
+version = "7.x-1.0"
+
+; Information added by drupal.org packaging script on 2009-05-19
+version = "7.x-1.0"
+core = "7.x"
+project = "uc_po_condition"
+datestamp = "1242756366"
+

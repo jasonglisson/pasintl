@@ -1,0 +1,108 @@
+<?php
+/**
+ * @file
+ * Combine shipping options
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function uc_combine_shipping_schema() {
+  $schema = array();
+
+  $schema['uc_combine_shipping_groups'] = array(
+    'description' => 'Stores shipping group information',
+    'fields' => array(
+      'group_id' => array(
+        'description' => 'The group id',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'group_order' => array(
+        'description' => 'In which order the group will be displayed on the checkout page',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'group_name' => array(
+        'description' => 'The name of the group',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default'  => '',
+      ),
+    ),
+    'primary key' => array('group_id'),
+  );
+  $schema['uc_combine_shipping_methods'] = array(
+    'description' => 'Shipping methods information',
+    'fields' => array(
+      'method_id' => array(
+        'description' => 'The machine name of the shipping method.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default'  => '',
+      ),
+      'group_id' => array(
+        'description' => 'The group id this shipping method belongs to',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('method_id'),
+  );
+  $schema['uc_combine_shipping_products'] = array(
+    'description' => 'Stores product information for uc_combine_shipping',
+    'fields' => array(
+      'vid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'nid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'group_id' => array(
+        'description' => 'The group id this product belongs to',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('vid'),
+  );
+
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function uc_combine_shipping_install() {
+  // enable combine shipping method
+  $quote_enabled = variable_get('uc_quote_enabled', array());
+  $quote_enabled['uc_combine_shipping'] = TRUE;
+  variable_set('uc_quote_enabled', $quote_enabled);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function uc_combine_shipping_uninstall() {
+  // Get the names of user variables
+  $results = db_select('variable', 'v')
+    ->fields('v', array('name'))
+    ->condition('name', 'uc_combine_shipping_%', 'LIKE')
+    ->execute();
+  // Loop through and delete each of the variables
+  foreach ($results as $result) {
+    variable_del($result->name);
+  }
+}

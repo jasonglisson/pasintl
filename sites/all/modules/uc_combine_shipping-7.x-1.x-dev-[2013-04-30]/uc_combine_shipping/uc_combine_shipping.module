@@ -1,0 +1,733 @@
+<?php
+/**
+ * @file
+ * Combine shipping options
+ *
+ */
+
+
+/******************************************************************************
+ * Drupal Hooks                                                               *
+ ******************************************************************************/
+
+/**
+ * Implements hook_init().
+ */
+function uc_combine_shipping_init() {
+  global $conf;
+  $conf['i18n_variables'][] = 'uc_combine_shipping_quote_total_label';
+}
+
+/**
+ * Implements hook_menu().
+ */
+function uc_combine_shipping_menu() {
+  $items = array();
+
+  // Settings
+  $items['admin/store/settings/quotes/settings/combine_shipping'] = array(
+    'title' => 'Combine Shipping',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('uc_combine_shipping_settings_form'),
+    'access arguments' => array('configure quotes'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'uc_combine_shipping.admin.inc',
+  );
+  // List and configure shipping groups
+  $items['admin/store/settings/quotes/settings/combine_shipping_groups'] = array(
+    'title' => 'Combine Shipping Groups',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('uc_combine_shipping_group_main_form'),
+    'access arguments' => array('configure quotes'),
+    'type' => MENU_CALLBACK,
+    'file' => 'uc_combine_shipping.admin.inc',
+  );
+  // Edit shipping group
+  $items['admin/store/settings/quotes/settings/combine_shipping_group/%/edit'] = array(
+    'title' => 'Edit shipping group',
+    'description'      => 'Edit shipping group',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('uc_combine_shipping_group_edit_form', 6),
+    'access arguments' => array('configure quotes'),
+    'type' => MENU_CALLBACK,
+    'file' => 'uc_combine_shipping.admin.inc',
+  );
+  // Delete shipping group
+  $items['admin/store/settings/quotes/settings/combine_shipping_group/%/delete'] = array(
+    'title' => 'Delete shipping group',
+    'description'      => 'Delete shipping group',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('uc_combine_shipping_group_del_form', 6),
+    'access arguments' => array('configure quotes'),
+    'type' => MENU_CALLBACK,
+    'file' => 'uc_combine_shipping.admin.inc',
+  );
+  return $items;
+}
+
+/*
+ * Implements hook_form_alter().
+ */
+function uc_combine_shipping_form_alter(&$form, $form_state, $form_id) {
+  // Alter the product node form.
+  if (uc_product_is_product_form($form)) {
+    $node = $form['#node'];
+    $groups = array(0 => t('Default'));
+    foreach (_uc_combine_shipping_get_groups() as $group) {
+      $groups[$group->group_id] = $group->group_name;
+    }
+    $form['shipping']['uc_combine_shipping_group'] = array(
+      '#type' => 'select',
+      '#title' => t('Combine Shipping group'),
+      '#options' => $groups,
+      '#default_value' => isset($node->uc_combine_shipping_group) ? $node->uc_combine_shipping_group : 0,
+      '#description' => t('Select which shipping group this product belongs to. You can edit groups !here.', array('!here' => l(t('here'), 'admin/store/settings/quotes/settings/combine_shipping_groups'))),
+    );
+  }
+}
+/**
+ * Implements hook_module implements_alter()
+ */
+function uc_combine_shipping_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    // Move uc_combine_shipping_form_alter() to the end of the list. module_implements()
+    // iterates through $implementations with a foreach loop which PHP iterates
+    // in the order that the items were added, so to move an item to the end of
+    // the array, we remove it and then add it.
+    $group = $implementations['uc_combine_shipping'];
+    unset($implementations['uc_combine_shipping']);
+    $implementations['uc_combine_shipping'] = $group;
+  }
+}
+
+
+/**
+ * Implements hook_views_api().
+ */
+function uc_combine_shipping_views_api() {
+  return array(
+    'api' => '2.0',
+    'path' => drupal_get_path('module', 'uc_combine_shipping') . '/views',
+  );
+}
+
+
+/**
+ * Implements hook_node_insert().
+ */
+function uc_combine_shipping_node_insert($node) {
+  if (uc_product_is_product($node->type) && isset($node->uc_combine_shipping_group)) {
+    $id = db_insert('uc_combine_shipping_products')
+    ->fields(array(
+      'vid' => $node->vid,
+      'nid' => $node->nid,
+      'group_id' => $node->uc_combine_shipping_group,
+    ))
+    ->execute();
+  }
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function uc_combine_shipping_node_update($node) {
+  if (uc_product_is_product($node->type)) {
+    if (empty($node->revision)) {
+      db_delete('uc_combine_shipping_products')
+      ->condition('vid', $node->vid)
+      ->execute();
+    }
+    if (isset($node->uc_combine_shipping_group) && ($node->uc_combine_shipping_group!=0)) {
+      $id = db_insert('uc_combine_shipping_products')
+      ->fields(array(
+        'vid' => $node->vid,
+        'nid' => $node->nid,
+        'group_id' => $node->uc_combine_shipping_group,
+      ))
+      ->execute();
+    }
+  }
+}
+
+/**
+ * Implements hook_node_load().
+ */
+function uc_combine_shipping_node_load($nodes, $types) {
+  // We can use $types to figure out if we need to process any of these nodes.
+  $our_types = array();
+  foreach ($types as $type) {
+    if (uc_product_is_product($type)) {
+      $our_types[] = $type;
+    }
+  }
+
+  // Now $our_types contains all the types from $types that we want
+  // to deal with. If it's empty, we can safely return.
+  if (!count($our_types)) {
+    return;
+  }
+
+  // Now we need to make a list of revisions
+  foreach ($nodes as $node) {
+    // We are using the revision id instead of node id.
+    if (uc_product_is_product($node->type)) {
+      $vids[] = $node->vid;
+      // set default shipping group
+      $nodes[$node->nid]->uc_combine_shipping_group = 0;
+    }
+  }
+  // Check if we should load values for any of the nodes.
+  if (!isset($vids) || !count($vids)) {
+    return;
+  }
+
+  // When we read, we don't care about the node->nid; we look for the right
+  // revision ID (node->vid).
+  $result = db_select('uc_combine_shipping_products', 'p')
+  ->fields('p', array('nid', 'vid', 'group_id'))
+  ->where('p.vid IN (:vids)', array(':vids' => $vids))
+  ->execute();
+
+  foreach ($result as $record) {
+    $nodes[$record->nid]->uc_combine_shipping_group = $record->group_id;
+  }
+}
+
+/**
+ * Implements hook_node_delete().
+ */
+function uc_combine_shipping_node_delete($node) {
+  if (uc_product_is_product($node->type)) {
+    db_delete('uc_combine_shipping_products')
+    ->condition('nid', $node->nid)
+    ->execute();
+  }
+}
+
+/**
+ * Implements hook_node_revision_delete().
+ */
+function uc_combine_shipping_node_revision_delete($node) {
+  if (uc_product_is_product($node->type)) {
+    db_delete('uc_combine_shipping_products')
+    ->condition('vid', $node->vid)
+    ->execute();
+  }
+}
+/******************************************************************************
+ * Ubercart Hooks                                                             *
+ ******************************************************************************/
+
+/**
+ * Implements hook_uc_shipping_method().
+ */
+function uc_combine_shipping_uc_shipping_method() {
+  $methods = array();
+
+  $methods['uc_combine_shipping'] = array(
+    'id' => 'uc_combine_shipping',
+    'module' => 'uc_combine_shipping',
+    'title' => t('Combine Shipping'),
+    'operations' => array(
+      'configure' => array(
+        'title' => t('configure'),
+        'href' => 'admin/store/settings/quotes/settings/combine_shipping',
+      ),
+      'groups' => array(
+        'title' => t('groups'),
+        'href' => 'admin/store/settings/quotes/settings/combine_shipping_groups',
+      ),
+    ),
+    'quote' => array(
+      'type' => 'order',
+      'callback' => '_uc_combine_shipping_quote',
+      'accessorials' => array(
+        _uc_combine_shipping_quote_total_label(),
+      ),
+    ),
+  );
+
+  return $methods;
+}
+
+/**
+ * Implements hook_uc_line_item().
+ */
+function uc_combine_shipping_uc_line_item() {
+  foreach (_uc_combine_shipping_get_groups() as $group) {
+    $items['uc_combine_shipping_' . $group->group_id] = array(
+      'title' => $group->group_name,
+      'weight' => ($group->group_order/10), // 'shipping' line item has weight 1
+      'default' => FALSE,
+      'stored' => TRUE,
+      'calculated' => FALSE,
+      'display_only' => FALSE,
+      'add_list' => TRUE,
+    );
+  }
+  return $items;
+}
+
+/**
+ * Implements hook_uc_checkout_pane_alter().
+ */
+
+function uc_combine_shipping_uc_checkout_pane_alter(&$panes) {
+  $panes['quotes']['callback'] = '_uc_combine_shipping_checkout_pane_quotes';
+}
+
+
+
+/******************************************************************************
+ * Callback functions
+ ******************************************************************************/
+
+
+/**
+ * Combine Shipping quote checkout pane callback.
+ *
+ * Selects a quoting method based on the enabled methods' weight and the types
+ * of products in the cart. The "Get Quotes" button fires a callback that
+ * returns a form for the customer to select a rate based on their needs and
+ * preferences.
+ *
+ * Adds a line item to the order that records the chosen shipping quote.
+ *
+ */
+function _uc_combine_shipping_checkout_pane_quotes($op, &$order, $form = NULL, &$form_state = NULL) {
+  global $user;
+  switch ($op) {
+    case 'view':
+      // let the original function generate the view
+      $return = uc_checkout_pane_quotes($op, $order, $form, $form_state);
+      // add ajax callbacks to the combined quote options
+      foreach (_uc_combine_shipping_get_groups() as $group) {
+        $form_state['uc_ajax']['uc_combine_shipping']['panes][quotes][quotes][uc_combine_shipping_quote_option_' . $group->group_id] = array(
+          'payment-pane' => 'uc_ajax_replace_checkout_pane',
+        );
+      }
+      return ($return);
+
+    case 'prepare':
+    case 'process':
+      // If a quote was explicitly selected, add it to the order.
+      if (isset($form['panes']['quotes']['quotes']['quote_option']['#value']) && isset($form['panes']['quotes']['quotes']['quote_option']['#default_value'])
+          && $form['panes']['quotes']['quotes']['quote_option']['#value'] !== $form['panes']['quotes']['quotes']['quote_option']['#default_value']) {
+        $quote_option = explode('---', $form_state['values']['panes']['quotes']['quotes']['quote_option']);
+        $order->quote['method'] = $quote_option[0];
+        $order->quote['accessorials'] = $quote_option[1];
+        $order->data['uc_quote_selected'] = TRUE;
+      }
+
+      // If the current quote was never explicitly selected, discard it and
+      // use the default.
+      if (empty($order->data['uc_quote_selected'])) {
+        unset($order->quote);
+      }
+      // Ensure that the form builder uses the default value to decide which
+      // radio button should be selected.
+      unset($form_state['input']['panes']['quotes']['quotes']['quote_option']);
+      $order->quote_form = array();
+      // add theme function now: this will put notes after each radio button
+      $order->quote_form['#theme'] = 'uc_combine_shipping_uc_quote_returned_rates';
+
+      $combined_products = _uc_combine_shipping_get_combined_products($order);
+      $combined_rate = 0;
+      // Normally $order->quote is checked at the end to see
+      // whether a quote has been selected.
+      // The $combined_quotes_ok flag has a similar purpose.
+      $combined_quotes_ok = TRUE;
+      if (count($combined_products)) {
+        foreach ($combined_products as $group_id => $group_products) {
+          $combined_order = _uc_combine_shipping_get_combined_order($order, $group_products, $group_id);
+          // copy values from real order to combined order
+          if (isset($order->data['uc_combine_shipping_quote_' . $group_id])) {
+            $combined_order->quote = $order->data['uc_combine_shipping_quote_' . $group_id];
+          }
+          if (isset($order->data['uc_combine_shipping_quote_selected_' . $group_id])) {
+            $combined_order->data['uc_quote_selected'] = $order->data['uc_combine_shipping_quote_selected_' . $group_id];
+          }
+
+          // If a combined quote was explicitly selected, add it to the combined order.
+          if (isset($form['panes']['quotes']['quotes']) && ($form_element = $form['panes']['quotes']['quotes']['uc_combine_shipping_quote_option_' . $group_id]) && isset($form_element['#value']) && isset($form_element['#default_value'])
+              && $form_element['#value'] !== $form_element['#default_value']) {
+            $quote_option = explode('---', $form_state['values']['panes']['quotes']['quotes']['uc_combine_shipping_quote_option_' . $group_id]);
+            $combined_order->quote['method'] = $quote_option[0];
+            $combined_order->quote['accessorials'] = $quote_option[1];
+            $combined_order->data['uc_quote_selected'] = TRUE;
+          }
+          // If the current quote was never explicitly selected, discard it and
+          // use the default.
+          if (empty($combined_order->data['uc_quote_selected'])) {
+            unset($combined_order->quote);
+          }
+
+
+          $quote_form = uc_quote_build_quote_form($combined_order, !empty($form_state['quote_requested']));
+          
+          $no_default = FALSE; // shipping modules may indicate that they do not want default option
+          if (isset($quote_form['quote_option'])) {
+            // check special "label-options" set by shipping modules
+            if (isset($quote_form['quote_option']['#options']) && count($quote_form['quote_option']['#options'])) {
+              foreach ($quote_form['quote_option']['#options'] as $key => $value) {
+                if (strpos($value, '[NO-DEFAULT]')!==FALSE) {
+                  $value = str_replace('[NO-DEFAULT]', '', $value);
+                  //$no_default = TRUE; // @todo not perfect yet
+                  //unset($quote_form['quote_option']['#default_value']);
+                }
+                if (strpos($value, '[NO-PRICE]')!==FALSE) {
+                  $value = str_replace('[NO-PRICE]', '', $value);
+                  $a = explode(':', $value);
+                  $value = $a[0];
+                }
+                $quote_form['quote_option']['#options'][$key] = $value;
+              }
+            }
+          
+            $order->quote_form['uc_combine_shipping_quote_option_' . $group_id] = $quote_form['quote_option'];
+            
+            if ($group_id) {
+  //            $order->quote_form['uc_combine_shipping_quote_option_' . $group_id]['#title'] = _uc_combine_shipping_get_group_name($group_id) . ':';
+            }
+            unset($quote_form['quote_option']);
+          }
+          $order->quote_form+=$quote_form;
+          // get default option (note that $no_default is also passed)
+          $default_option = _uc_combine_shipping_get_default_option($order->quote_form, $group_id, $no_default);
+          if ($default_option) {
+            $quote_rate = $order->quote_form[$default_option]['rate']['#value'];
+            // unused: $order->quote['uc_combine_shipping_rate_' . $group_id] = $quote_rate;
+            $combined_rate += $quote_rate;
+            // save quote values in real order
+            $quote_option = explode('---', $default_option);
+            $order->data['uc_combine_shipping_quote_' . $group_id]['method'] = $quote_option[0];
+            $order->data['uc_combine_shipping_quote_' . $group_id]['accessorials'] = $quote_option[1];
+            $methods = uc_quote_methods();
+            $method = $methods[$quote_option[0]];
+
+            $label = $method['quote']['accessorials'][$quote_option[1]];
+
+            $result = db_query("SELECT line_item_id FROM {uc_order_line_items} WHERE order_id = :id AND type = :type", array(':id' => $order->order_id, ':type' => 'uc_combine_shipping_' . $group_id));
+            if ($lid = $result->fetchField()) {
+              uc_order_update_line_item($lid,
+                $label,
+                $quote_rate
+              );
+            }
+            else {
+              uc_order_line_item_add($order->order_id, 'uc_combine_shipping_' . $group_id,
+                $label,
+                $quote_rate
+              );
+            }
+          }
+          else {
+            $result = db_query("DELETE FROM {uc_order_line_items} WHERE order_id = :id AND type = :type", array(':id' => $order->order_id, ':type' => 'uc_combine_shipping_' . $group_id));
+          }
+          // copy values from combined order to real order
+          unset($order->data['uc_combine_shipping_quote_' . $group_id]);
+          unset($order->data['uc_combine_shipping_quote_selected_' . $group_id]);
+          if (isset($combined_order->quote)) {
+            $order->data['uc_combine_shipping_quote_' . $group_id] = $combined_order->quote;
+          }
+          if (isset($combined_order->data['uc_quote_selected'])) {
+            $order->data['uc_combine_shipping_quote_selected_' . $group_id] = $combined_order->data['uc_quote_selected'];
+          }
+          /* @todo this is not perfect yet
+          if (!isset($combined_order->quote) && $op == 'process' && variable_get('uc_quote_require_quote', TRUE)) {
+            // This group does not have a quote selected
+            form_set_error('panes][quotes][quotes][uc_combine_shipping_quote_option_' . $group_id, t('You must select a shipping option before continuing.'));
+            $combined_quotes_ok = FALSE;
+          }
+          */
+       }
+        // add the combine shipping option, the only "real" quote option
+        $order->quote_form += array(
+          'quote_option' => array(
+            '#type' => 'hidden',
+            '#value' => 'uc_combine_shipping---0',
+          ),
+          'uc_combine_shipping---0' => array(
+            'rate' => array(
+              '#type' => 'hidden',
+              '#value' => $combined_rate,
+            ),
+          ),
+        );
+      }
+      $default_option = _uc_quote_extract_default_option($order->quote_form);
+      if ($default_option) {
+        $order->quote['rate'] = $order->quote_form[$default_option]['rate']['#value'];
+
+        $quote_option = explode('---', $default_option);
+        $order->quote['method'] = $quote_option[0];
+        $order->quote['accessorials'] = $quote_option[1];
+        $methods = uc_quote_methods();
+        $method = $methods[$quote_option[0]];
+
+        $label = $method['quote']['accessorials'][$quote_option[1]];
+
+        $result = db_query("SELECT line_item_id FROM {uc_order_line_items} WHERE order_id = :id AND type = :type", array(':id' => $order->order_id, ':type' => 'shipping'));
+        if ($lid = $result->fetchField()) {
+          uc_order_update_line_item($lid,
+            $label,
+            $order->quote['rate']
+          );
+        }
+        else {
+          uc_order_line_item_add($order->order_id, 'shipping',
+            $label,
+            $order->quote['rate']
+          );
+        }
+      }
+      // If there is no default option, then no valid quote was selected.
+      else {
+        unset($order->quote);
+      }
+
+      if (!isset($order->quote) && $op == 'process' && variable_get('uc_quote_require_quote', TRUE)) {
+        form_set_error('panes][quotes][quotes][quote_option', t('You must select a shipping option before continuing.'));
+        return FALSE;
+      }
+      else if (!$combined_quotes_ok) {
+        // The form error is already set
+        return FALSE;
+      }
+      else {
+        return TRUE;
+      }
+
+    case 'review':
+      $review = array();
+      // add combined shipping line items
+      foreach (_uc_combine_shipping_get_groups() as $group) {
+        $result = db_query("SELECT * FROM {uc_order_line_items} WHERE order_id = :id AND type = :type", array(':id' => $order->order_id, ':type' => 'uc_combine_shipping_' . $group->group_id));
+        if ($line_item = $result->fetchAssoc()) {
+          $review[] = array('title' => $line_item['title'], 'data' => theme('uc_price', array('price' => $line_item['amount'])));
+        }
+      }
+      // add shipping line items
+      $result = db_query("SELECT * FROM {uc_order_line_items} WHERE order_id = :id AND type = :type", array(':id' => $order->order_id, ':type' => 'shipping'));
+      if ($line_item = $result->fetchAssoc()) {
+        $review[] = array('title' => $line_item['title'], 'data' => theme('uc_price', array('price' => $line_item['amount'])));
+      }
+
+      return $review;
+  }
+}
+
+/**
+ * Standard callback to return a shipping rate via the combine shipping method.
+ *
+ * @param $products
+ *   The order's products.
+ * @param $details
+ *   Other order details including a shipping address.
+ * @param $method
+ *   The shipping method to use to create the quote.
+ *
+ * @return
+ *   An array containing the shipping quote for the order.
+ *   Value is unimportant, will be set in _uc_combine_shipping_checkout_pane_quotes()
+ */
+function _uc_combine_shipping_quote($products, $details, $method) {
+  // no quote is returned here
+  return (array());
+}
+
+
+/******************************************************************************
+ * Module Functions                                                           *
+ ******************************************************************************/
+
+/**
+ * Return the total label of the Combine Shipping method
+ */
+function _uc_combine_shipping_quote_total_label() {
+  return (variable_get('uc_combine_shipping_quote_total_label', 'Shipping total'));
+}
+
+
+/**
+ * Get the shipping method part of a shipping identifier string
+ *
+ * @param $method_id
+ *   Method id including accessorials, format is like 'flatrate_1---0'
+ *
+ * @return
+ *   method, the first part of the input string, or '' if it is not a method id
+ */
+
+function _uc_combine_shipping_explode_method($method_id) {
+  $option = explode('---', $method_id);
+  // explode may return FALSE or an empty array as well, ignore them
+  if (is_array($option) && count($option)>1) {
+    // return method, the first part of the string
+    return ($option[0]);
+  }
+  // this is not a method id
+  return ('');
+}
+/**
+ * Get the combined products of the given order
+ */
+function _uc_combine_shipping_get_combined_products($order) {
+  // Loop through the products of the order and put them into shipping groups
+  $combined_products = array();
+  if (isset($order->products) && is_array($order->products) && count($order->products)) {
+    foreach ($order->products as $product) {
+      // load node of the product
+      if ($node = node_load($product->nid)) {
+        // add this product to the group
+        $combined_products[$node->uc_combine_shipping_group][] = $product;
+      }
+    }
+  }
+  return ($combined_products);
+}
+
+/**
+ * Create a fake order with combined products
+ */
+function _uc_combine_shipping_get_combined_order($order, $group_products, $group_id) {
+  // Get the original quote form that contains all shipping methods.
+  // Need to 'clone' the original $order variable to avoid any modifications
+  $combined_order = clone $order;
+  $combined_order->products = $group_products;
+  $combined_order->order_total = uc_order_get_total($combined_order);
+  $combined_order->product_count = uc_order_get_product_count($combined_order);
+  // store all the products of the original order in the combined order
+  // just in case a shipping method or a condition needs this information
+  $combined_order->uc_combine_shipping_products = $order->products;
+  $combined_order->uc_combine_shipping_order_total = $order->order_total;
+  $combined_order->uc_combine_shipping_product_count = $order->product_count;
+  // store the group id, used by uc_combine_shipping_condition_order_shipping_method()
+  $combined_order->uc_combine_shipping_group_id = $group_id;
+  return $combined_order;
+}
+
+
+/**
+ * Gets the default (selected) quote option from the built form element.
+ *
+ * @param $quote_form
+ *   The quotes form-element.
+ * @param $group_id
+ *   The Combine Shipping group id
+ * @param $no_default
+ *   TRUE if the shipping module does not wish to have a default value
+ *
+ * @return
+ *   The default quote option, or FALSE if none exists.
+ */
+function _uc_combine_shipping_get_default_option($quote_form, $group_id, $no_default) {
+  if (isset($quote_form['uc_combine_shipping_quote_option_' . $group_id]['#value'])) {
+    return $quote_form['uc_combine_shipping_quote_option_' . $group_id]['#value'];
+  }
+  elseif (!$no_default && isset($quote_form['uc_combine_shipping_quote_option_' . $group_id]['#default_value'])) {
+    return $quote_form['uc_combine_shipping_quote_option_' . $group_id]['#default_value'];
+  }
+  else {
+    return FALSE;
+  }
+}
+
+/*
+ * Get the configured shipping groups, excluding the Default group
+ */
+function _uc_combine_shipping_get_groups() {
+  $groups = array();
+  $result = db_query("SELECT group_id, group_name, group_order FROM {uc_combine_shipping_groups} ORDER BY group_order, group_name");
+  foreach ($result as $record) {
+    $groups[] = $record;
+  }
+  return ($groups);
+}
+
+/*
+ * Get the name of the given shipping group
+ */
+function _uc_combine_shipping_get_group_name($group_id) {
+  if (!$group_id) {
+    return (t('Default'));
+  }
+  $result = db_select('uc_combine_shipping_groups', 'g')
+    ->fields('g', array('group_name'))
+    ->condition('g.group_id', $group_id, '=')
+    ->execute();
+  foreach ($result as $record) {
+    return check_plain($record->group_name);
+  }
+}
+
+/**
+ * Get the group_id of a method
+ */
+function _uc_combine_shipping_get_group_id($method_id) {
+// @todo a cache would be usedful
+  $result = db_query("SELECT group_id FROM {uc_combine_shipping_methods} WHERE method_id=:method_id", array(':method_id' => $method_id));
+  foreach ($result as $record) {
+    return $record->group_id;
+  }
+  // no record found, return the default group id
+  return 0;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function uc_combine_shipping_theme() {
+  return array(
+    'uc_combine_shipping_uc_quote_returned_rates' => array(
+      'render element' => 'form',
+    ),
+  );
+}
+
+
+
+/**
+ * Displays the returned shipping rates.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - form: A render element representing the form.
+ *
+ * @ingroup themeable
+ */
+function theme_uc_combine_shipping_uc_quote_returned_rates($variables) {
+  $form = $variables['form'];
+  $output = '';
+  $keys = element_children($form);
+  if (count($keys) > 1) {
+    $groups = _uc_combine_shipping_get_groups();
+    foreach ($groups as $group) {
+      $group_key = 'uc_combine_shipping_quote_option_' . $group->group_id;
+      if (isset($form[$group_key])) {
+        $output .= "\n\n" . '<div id="' . $group_key . '" class="combine-shipping-group">' . "\n\n";
+        if (isset($form[$group_key]['#options']) && count($form[$group_key]['#options'])) {
+          foreach ($form[$group_key]['#options'] as $option_key => $option_label) {
+            if (isset($form[$group_key][$option_key])) {
+              $output .= "\n" . '<div class="quote-method">' . "\n";
+              $output .= drupal_render($form[$group_key][$option_key]);
+              $output .= '</div>' . "\n";
+            }
+            if (isset($form[$option_key])) {
+              $output .= drupal_render($form[$option_key]);
+            }
+          }
+          $output .= drupal_render($form[$group_key]);
+        }
+        else {
+          $output .= "\n" . '<div class="quote-method">' . "\n";
+          $output .= drupal_render($form[$group_key]);        
+          $output .= '</div>' . "\n";
+        }
+        $output .= "\n\n" . '</div>' . "\n\n";
+      }
+    }
+  }
+  $output .= drupal_render_children($form);
+  return $output;
+}

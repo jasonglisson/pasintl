@@ -1,0 +1,61 @@
+<?php
+/**
+ * @file
+ */
+
+/**
+ * Tests for the variablecheck module.
+ */
+class VariableCheckTestCase extends DrupalWebTestCase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function getInfo() {
+    // Note: getInfo() strings should not be translated.
+    return array(
+      'name' => 'Variablecheck unit tests',
+      'description' => 'Test that variablecheck works properly.',
+      'group' => 'Variablecheck',
+    );
+  }
+
+  /**
+   * Enable module and store a good and bad value in the variables table.
+   */
+  function setUp() {
+    parent::setUp('variablecheck');
+
+    // Add a known bad naugty value to the variables table.
+    db_insert('variable')->fields(array('name' => 'variablecheck_bad', 'value' => 'bad value'));
+
+    // Add a known good serialized value to the variables table.
+    variable_set('variablecheck_good', 'good value');
+  }
+
+  /**
+   * Check for the dreaded notices.
+   */
+  function testVariableNotice() {
+    $this->drupalGet('');
+    this->assertText('Notice: unserialize(): Error at offset')
+  }
+
+  /**
+   * Access the admin page and verify the good variable is not shown whilst
+   * the bad variable is.
+   */
+  function testVariableAdminPage() {
+    $account = $this->drupalCreateUser(array('access site reports', 'check variables'));
+    $this->drupalLogin($account);
+
+    $this->drupalGet('admin/reports/variablecheck');
+    $this->assertText('Found 1 invalid variable', 'Detected an invalid variable.');
+    $this->assertPattern("/variablecheck_bad.*bad\ value/", "Detected the correct bad variabl and its value.");
+  }
+
+  /**
+   * Access the admin page to delete the bad variable, ensure it is then
+   * no longer shown.
+   */
+}

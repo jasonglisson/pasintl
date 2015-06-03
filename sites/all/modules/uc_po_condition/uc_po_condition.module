@@ -1,0 +1,52 @@
+<?php
+// $Id: uc_po_condition.module,v 1.1 2009/05/19 17:12:43 jrust Exp $
+
+/**
+ * @file
+ * creates P.O. Box recognition conditions
+ */
+
+/*******************************************************************************
+ * Hook Functions (Ubercart)
+ ******************************************************************************/
+/**
+ * Implementation of hook_ca_condition().
+ */
+function uc_po_condition_ca_condition() {
+  $order_arg = array(
+    '#entity' => 'uc_order',
+  );
+
+  $conditions['uc_order_condition_delivery_pobox'] = array(
+    '#title' => t('Check if an order being delivered to a P.O. Box.'),
+    '#category' => t('Order: Shipping address'),
+    '#description' => t('Returns TRUE if being delivered to a P.O. Box.'),
+    '#callback' => 'uc_order_condition_delivery_pobox',
+    '#arguments' => array(
+      'order' => $order_arg,
+    ),
+  );
+
+  return $conditions;
+}
+
+/*******************************************************************************
+ * Module and Helper Functions
+ ******************************************************************************/
+/**
+ * Checks for a P.O. Box
+ * Check code taken from the uc_nopobox module
+ */
+function uc_order_condition_delivery_pobox($order, $settings) {
+  foreach (array('delivery_street1', 'delivery_street2') as $key) {
+    $text = str_replace(array(" ", "\t", "\n", "\r", "\0", "\x0B"), '', $order->$key);
+    $text = str_replace(array(".", ",", ":", ";"), '', $text);
+    $text = strtolower($text);
+
+    if (strpos($text, 'pobox') !== FALSE) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}

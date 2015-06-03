@@ -1,0 +1,14 @@
+name = Mail headers
+description = Limit the allowed domains for the sender e-mail address used on any e-mail sent through Drupal.
+core = 7.x
+package = Mail
+files[] = mail_headers.inc
+dependencies[] = token
+dependencies[] = tableform
+configure = admin/config/system/mail_headers
+; Information added by drupal.org packaging script on 2012-12-13
+version = "7.x-2.0-beta1"
+core = "7.x"
+project = "mail_headers"
+datestamp = "1355367452"
+

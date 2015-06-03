@@ -1,0 +1,78 @@
+body {
+
+}
+
+.container {
+	width: 1170px !important;
+}
+
+.navbar .container {
+	width: 1170px !important;	
+}
+
+.navbar .logo img {
+	width: 100px;
+}
+
+
+.pro-summary-wrapper {
+	background-color: #00518c;
+	height: 200px;
+	top: 200px;
+	position: relative;
+	z-index: 1;
+}
+
+.visible-md. {
+	display:block !important;
+}
+
+.visible-lg {
+	display:block !important;
+}
+
+.main-item {
+	width:380px !important;
+	float:left !important;
+}
+
+.col-md-6 {
+	width:375px !important;
+	float:left !important;
+}
+
+.col-lg-3 {
+	width:285px !important;
+}
+
+.col-md-3 {
+	width: 292px !important;
+	float: left !important;
+}
+
+.col-sm-4 {
+	width:390px !important;
+	float:left!important;
+}
+
+.col-sm-8 {
+	float:left;
+	width:780px!important;
+}
+
+.col-sm-12 {
+
+}
+
+.featured-column {
+	float:left !important;
+}
+
+.footer-menu-wrapper .region {
+	float:left !important;
+}
+	
+.footer-menu-wrapper .footer-col {
+	width:293px !important;
+	float:left !important;
+}

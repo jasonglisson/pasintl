@@ -1,0 +1,16 @@
+; $Id$
+name = Combine Shipping
+description = Combine shipping options
+dependencies[] = uc_shipping
+package = Ubercart - fulfillment
+core = 7.x
+php = 5.0
+version = "7.x-1.0-dev2"
+configure = admin/store/settings/quotes/methods/combine_shipping
+files[] = uc_combine_shipping.admin.inc
+files[] = uc_combine_shipping.install
+files[] = uc_combine_shipping.module
+files[] = uc_combine_shipping.rules.inc
+files[] = uc_combine_shipping.rules_defaults.inc
+files[] = views/views_handler_field_uc_combine_shipping_group.inc
+files[] = views/uc_combine_shipping.views.inc
