@@ -122,7 +122,18 @@
     </section>
 
     <?php if (!empty($page['sidebar_second'])): ?>
+    <?php global $base_root;
+		  $current_url = $base_root . request_uri();?>    
       <aside class="col-lg-5 blog-sidebar" role="complementary">
+	      <h2>Share this post</h2>
+	      <div class="blog-social">
+		    <a class="facebook" href="https://www.facebook.com/sharer.php?u=<?php print $current_url; ?>&t=<?php print $title; ?>
+" target="_blank">Facebook</a>
+			<a class="twitter" href="https://twitter.com/intent/tweet?text=<?php print $title; ?>&url=<?php print $current_url; ?>" taget="_blank">Twitter</a>
+			<a class="google" href="https://plus.google.com/share?url=<?php print $current_url; ?>" onclick="javascript:window.open(this.href,
+  '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">Google</a>
+			<a class="email" href="mailto:?subject=Check out this blog post from PAS Systems International&amp;body=<?php print $title; ?> - <?php print $current_url; ?>">Email</a>
+	      </div>
         <?php print render($page['sidebar_second']); ?>
       </aside>  <!-- /#sidebar-second -->
     <?php endif; ?>

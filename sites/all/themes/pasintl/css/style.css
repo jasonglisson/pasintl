@@ -632,7 +632,15 @@ button a:hover {
 
 .blog-sidebar {
 	padding-left: 50px;
-	padding-right: 50px;
+	padding-right: 100px;
+}
+
+.blog-sidebar h2{
+	font-size: 2rem;
+	text-transform: uppercase;
+	margin-top: 40px;
+	margin-bottom: 20px;
+	color: #666;
 }
 
 .blog-sidebar .views-widget-filter-title, .blog-sidebar .views-widget-filter-tid {
@@ -650,7 +658,73 @@ button a:hover {
 	padding:15px;
 }
 
-.node-type-article .field-name-field-blog-category {
+.blog-sidebar .views-field-field-video-thumbnail img {
+	width: 320px;
+	height: auto;
+}
+.blog-sidebar .view-latest-videos .views-row {
+	margin-top: 20px;
+}
+
+.blog-sidebar .view-latest-videos .views-field-title {
+	margin-bottom: 10px;
+}
+
+.blog-sidebar .blog-social {
+	margin-bottom: 40px;
+	background: #F0F0F0;
+	border-radius: 4px;
+	padding: 10px;
+	float: left;
+	width: 100%;	
+}
+
+.blog-sidebar .blog-social a{
+	display: block;
+	float: left;
+	width: 25%;
+	height: 25px;
+	overflow: none;
+	color: rgba(255, 255, 255, 0);
+}
+
+.blog-sidebar .blog-social a.facebook{
+	background: url(../images/social.png) -169px -54px no-repeat;
+}
+
+.blog-sidebar .blog-social a.facebook:hover{
+	background: url(../images/social.png) -169px -1px no-repeat;
+}
+
+.blog-sidebar .blog-social a.twitter{
+	background: url(../images/social.png) -256px -54px no-repeat;
+}
+
+.blog-sidebar .blog-social a.twitter:hover{
+	background: url(../images/social.png) -256px -1px no-repeat;
+}
+
+.blog-sidebar .blog-social a.google{
+	background: url(../images/social.png) -74px -54px no-repeat;
+}
+
+.blog-sidebar .blog-social a.google:hover{
+	background: url(../images/social.png) -74px -1px no-repeat;
+}
+
+.blog-sidebar .blog-social a.email{
+	background: url(../images/social.png) -342px -54px no-repeat;
+}
+
+.blog-sidebar .blog-social a.email:hover{
+	background: url(../images/social.png) -342px -1px no-repeat;
+}
+
+.blog-sidebar .region-sidebar-second {
+	float:left;
+}
+
+.node-type-article .field-name-field-blog-category, .node-type-video .field-name-field-blog-category {
 	display: none;
 }
 
@@ -658,6 +732,10 @@ button a:hover {
 	width: 100%;
 	line-height: 3rem;
 	font-size: 2rem;
+}
+
+.blog-main-col .field-type-video-embed-field{
+	margin-top:20px;
 }
 
 /* Accordion Menu */
