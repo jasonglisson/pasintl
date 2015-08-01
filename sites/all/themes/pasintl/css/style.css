@@ -604,6 +604,9 @@ button a:hover {
 	padding-right:25px;
 	border-right:1px solid #ddd;	
 }
+.blog-main-col h1 {
+	display:none;
+}
 .view-blog .blog-post {
 	padding:20px 0 45px 0;
 	border-bottom:1px solid #ddd;
@@ -646,8 +649,11 @@ button a:hover {
 .blog-sidebar section {
 	border-bottom: 1px solid #ddd;
 	padding-bottom:25px;
-	float:left;
 }
+
+.blog-sidebar section:last-of-type {
+	border-bottom: 0px solid #ddd;
+}	
 
 .blog-sidebar .views-widget-filter-title, .blog-sidebar .views-widget-filter-tid {
 	width:100%;
