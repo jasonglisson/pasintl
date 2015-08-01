@@ -84,7 +84,6 @@
 
     <?php print render($page['header']); ?>
   </header> <!-- /#page-header -->
-
   <div class="row">
 
     <section class="col-sm-7 blog-main-col">

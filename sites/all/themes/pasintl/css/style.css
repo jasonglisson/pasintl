@@ -607,6 +607,14 @@ button a:hover {
 .blog-main-col h1 {
 	display:none;
 }
+#page-header .blog-header h2 {
+    text-transform: uppercase;
+    padding-bottom: 25px;
+    border-bottom: 2px solid rgb(66, 139, 202);
+    color: #00518C;
+    margin-bottom: 15px;	
+}
+
 .view-blog .blog-post {
 	padding:20px 0 45px 0;
 	border-bottom:1px solid #ddd;
@@ -737,7 +745,7 @@ button a:hover {
 }
 
 .blog-sidebar .block-webform {
-	width: 337px;
+	width: 323px;
 	margin-bottom:40px;
 }
 
