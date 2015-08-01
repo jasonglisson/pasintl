@@ -604,6 +604,17 @@ button a:hover {
 	padding-right:25px;
 	border-right:1px solid #ddd;	
 }
+.blog-main-col h1 {
+	display:none;
+}
+#page-header .blog-header h2 {
+    text-transform: uppercase;
+    padding-bottom: 25px;
+    border-bottom: 2px solid rgb(66, 139, 202);
+    color: #00518C;
+    margin-bottom: 15px;	
+}
+
 .view-blog .blog-post {
 	padding:20px 0 45px 0;
 	border-bottom:1px solid #ddd;
@@ -646,8 +657,11 @@ button a:hover {
 .blog-sidebar section {
 	border-bottom: 1px solid #ddd;
 	padding-bottom:25px;
-	float:left;
 }
+
+.blog-sidebar section:last-of-type {
+	border-bottom: 0px solid #ddd;
+}	
 
 .blog-sidebar .views-widget-filter-title, .blog-sidebar .views-widget-filter-tid {
 	width:100%;
@@ -731,7 +745,7 @@ button a:hover {
 }
 
 .blog-sidebar .block-webform {
-	width: 337px;
+	width: 323px;
 	margin-bottom:40px;
 }
 
