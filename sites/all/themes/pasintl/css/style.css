@@ -663,7 +663,7 @@ button a:hover {
 	border-bottom: 0px solid #ddd;
 }	
 
-.blog-sidebar .views-widget-filter-title, .blog-sidebar .views-widget-filter-tid {
+.blog-sidebar .views-widget-filter-combine, .blog-sidebar .views-widget-filter-tid {
 	width:100%;
 }
 
