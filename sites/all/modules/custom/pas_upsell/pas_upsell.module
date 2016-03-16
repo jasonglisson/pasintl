@@ -1,0 +1,146 @@
+<?php
+function pas_upsell_menu() {
+
+  $items = array();
+
+  $items['admin/store/settings/upsell'] = array(
+    'title' => 'Upsells',
+    'description' => 'Provides an Upsell product area on the Shopping Cart page at /cart',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('pas_upsell_form'),
+    'access arguments' => array('administer pas_upsell settings'),
+    'type' => MENU_NORMAL_ITEM,
+   );
+
+  return $items;
+}
+	
+function pas_upsell_form($form, &$form_state) {
+	$form = array();
+	$form['upsell_title'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Upsell Block Title'),
+		'#default_value' => variable_get('upsell_title'),
+		'#size' => 100,
+		'#maxlength' => 100,
+		'#description' => t('This will be the title that shows up on the /cart page.'),
+		'#required' => TRUE,
+	);
+	$form['upsell_number'] = array(
+		'#type' => 'select',
+		'#title' => t('Number of upsell items to display.'),
+		'#options' => array(
+		  0 => t('1'),
+		  1 => t('2'),
+		  2 => t('3'),	  		  
+		),
+		'#default_value' => variable_get('upsell_number'),
+		'#description' => t('Set this to the number of upsell items that you\'d like to display'),
+	);	
+		
+	return system_settings_form($form);	
+}	
+	
+function pas_upsell_form_alter(&$form, &$form_state, $form_id) {
+
+  //dsm($form);  // pretty print array using Krumo to messages
+
+	if($form_id == "uc_cart_view_form"){
+
+  	$items = $form['items']['#parameters'][1];
+ 	
+	foreach($items as $key => $cartItem) {
+
+		if (is_int($key)){
+		
+			$nid = $cartItem['nid']['#value'];
+			
+			$products = node_load($nid);
+			
+			$upsell = $products->field_upsell_items;				
+			
+			foreach($upsell as $u) {
+
+				foreach($u as $t) {
+
+					shuffle($t);
+
+					foreach($t as $r) {
+						
+						$w[] = $r;
+	
+					}
+				}
+				
+			}	
+						
+		}
+	
+	}
+					
+	$i = 0;	
+	$g = 0;
+	$p = 0;
+	shuffle($w);
+	foreach($w as $e => $q){
+		
+		$n = node_load($q);
+		$alias = drupal_get_path_alias('node/' .$n->nid);
+		$file = file_load($n->uc_product_image['und'][0]['fid']);
+		$image = image_load($file->uri);
+		$upsell_image = array(
+			'file' => array(
+				'#theme' => 'image_style',
+				'#style_name' => 'thumbnail',
+				'#path' => $image->source,
+				'#width' => $image->info['width'],
+				'#height' => $image->info['height'],
+			),
+		);
+		$form['upsell' . $i++ .'item'] = array(
+			'#type' => 'markup',
+			'#markup' => '
+			<div class="col-md-4 upsells-'. $g++ .'" style="margin-bottom:25px;">
+				<div style="width:100%; float:left;"><a href="' . $alias . '">' . drupal_render($upsell_image) . '</a></div>
+				<div style="width:100%; float:left;"><h5><a href="' . $alias . '">' . $n->title . '</a></h5></div>
+				<div class="featured-price">'. uc_currency_format($n->sell_price) .'</div>		
+				<div style="width:100%; float:left;"><a href="/cart/add/p' . $n->nid . '_q1?destination=cart/" class="cart-upsell-button btn btn-success" style="">Add to cart</a></div>
+			</div>',
+			'#tree' => true,
+			'#weight' => 15
+		); 
+		if ($p++ == variable_get('upsell_number')) break;
+  	}
+  	
+	$form['upsell_wrap_1'] = array(
+		'#type' => 'markup',
+		'#markup' => '<div style="margin:-30px 0 25px 0; width:100%; float:left;">',
+		'#tree' => true,
+		'#weight' => 13
+	);	
+	if(isset($w)){
+		$form['upsell_heading'] = array(
+			'#type' => 'markup',
+			'#markup' => '<h3 class="upsell-heading">' . variable_get('upsell_title') . '</h3>',
+			'#tree' => true,
+			'#weight' => 14
+		);		
+	}	
+	$form['upsell_line'] = array(
+		'#type' => 'markup',
+		'#markup' => '<h2 style="margin:25px 0;"></h2>',
+		'#tree' => true,
+		'#weight' => 16
+	);	
+	$form['upsell_wrap_2'] = array(
+		'#type' => 'markup',
+		'#markup' => '</div>',
+		'#tree' => true,
+		'#weight' => 17
+	);  	
+  						
+  } 
+  
+}	
+
+?>

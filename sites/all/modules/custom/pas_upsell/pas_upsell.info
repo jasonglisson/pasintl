@@ -1,0 +1,4 @@
+name = PAS Upsell
+description = Provides an Upsell product area on the Shopping Cart page at /cart
+core = 7.x
+package = PAS Intl
