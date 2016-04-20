@@ -230,7 +230,15 @@
                               <?php print $product->individual_price; ?><br />
                               <?php print t('SKU'); ?>: <?php print $product->model; ?><br />
                               <?php print $product->details; ?>
-                            </td>
+															<?php $nid = node_load($product->nid);
+																		$videoProd = $nid->field_video_product[LANGUAGE_NONE][0]['value']; 
+																		$videoLink = $nid->field_video_link[LANGUAGE_NONE][0]['value'];
+																		$videoPass = $nid->field_video_password[LANGUAGE_NONE][0]['value'];
+																		if(isset($videoLink)): ?>
+																			<?php print t('Video Training Link'); ?>: <a href="<?php print $videoLink; ?>" target="_blank"><?php print $videoLink; ?></a><br />	
+																			<?php print t('Video Password'); ?>: <?php print $videoPass; ?><br />						
+															<?php endif; ?>	
+														</td>
                           </tr>
                           <?php endforeach; ?>
                         </table>

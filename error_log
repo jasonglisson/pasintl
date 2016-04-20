@@ -1,1 +1,5 @@
 [11-Jan-2016 10:35:27 America/Denver] PHP Fatal error:  Call to undefined function db_query() in /home/pasintlc/public_html/sites/all/modules/domain/domain.bootstrap.inc on line 112
+[17-Mar-2016 18:26:04 America/New_York] PHP Fatal error:  Unsupported operand types in /home/pasintlc/public_html/modules/block/block.module on line 519
+[17-Mar-2016 18:26:49 America/New_York] PHP Fatal error:  Unsupported operand types in /home/pasintlc/public_html/modules/block/block.module on line 519
+[17-Mar-2016 21:44:26 America/New_York] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 79 bytes) in /home/pasintlc/public_html/sites/all/modules/token/token.module on line 990
+[17-Mar-2016 22:34:28 America/New_York] PHP Fatal error:  Call to undefined function dsm() in /home/pasintlc/public_html/sites/all/modules/ubercart/uc_order/templates/uc-order--customer.tpl.php on line 233
