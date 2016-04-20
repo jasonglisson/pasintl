@@ -401,9 +401,21 @@
 				if (isset($product1['und'][0]['entity']->title)) {
 				print $product1['und'][0]['entity']->title;
 			}?></h2>
-				<div id="price">
-					<?php print uc_currency_format($product1['und'][0]['entity']->price); ?>
-				</div>	
+			<div id="price">
+				<?php /* print uc_currency_format($node->sell_price);  */
+				  //print_r(uc_currency_format($product1['und'][0]['entity']->sell_price));
+				  //print_r(uc_currency_format($product1['und'][0]['entity']->list_price));				  
+					$sell_price = uc_currency_format($product1['und'][0]['entity']->sell_price);
+					$list_price = uc_currency_format($product1['und'][0]['entity']->list_price);
+					
+					if ($sell_price < $list_price) {
+						echo "<div class=\"price-box\">Price: <span class=\"offer-price\">" . $list_price . "</span><span class=\"sale-price\"> " . $sell_price . "</span>
+	</div>";
+					} else {
+						echo "Price: " . uc_currency_format($product1['und'][0]['entity']->sell_price);
+					}
+				?>
+			</div>
 			<?php
 				$node1 = node_load($product1['und'][0]['entity']->nid);
 				$add_to_cart = array(
