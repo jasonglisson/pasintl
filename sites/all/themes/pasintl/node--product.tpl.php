@@ -100,7 +100,7 @@
 					echo "<div class=\"price-box\">Price: <span class=\"offer-price\">" . $list_price . "</span><span class=\"sale-price\"> " . $sell_price . "</span>
 </div>";
 				} else {
-					echo "Price: " . uc_currency_format($node->sell_price);
+					echo "Price: " . uc_currency_format($node->list_price);
 				}
 			?>
 		</div>	
