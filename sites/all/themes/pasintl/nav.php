@@ -42,7 +42,7 @@ $searchform = drupal_get_form('search_block_form'); ?>
 			      <?php endif; ?>
 			    </nav>
 			    <div id="right-side-nav" class="hidden-md hidden-xs">
-					<div id="language-selector"><a href="https://cl.pasintl.com/">SPANISH</a> <a title="PAS International English" href="https://pasintl.com/">ENGLISH</a></div>
+					<div id="language-selector"><a href="http://cl.pasintl.com/">SPANISH</a> <a title="PAS International English" href="https://pasintl.com/">ENGLISH</a></div>
 				    <div id="cart-lg" class="well well-sm">
 				    	<a href="/cart">
 					    <span class="glyphicon glyphicon-shopping-cart"></span>
