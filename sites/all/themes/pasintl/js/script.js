@@ -150,6 +150,10 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
 	jQuery(".node-type-product-showcase td:contains('Yes')").html('<span class="glyphicon glyphicon-ok"></span>');
 	jQuery(".node-type-product-showcase td:contains('No')").html('<span class="glyphicon glyphicon-remove"></span>');
 
+	jQuery('.product-services-block').click(function(){
+		jQuery(this).find('a')[0].click();
+	});
+	
 
 //	Microsite scripts
 

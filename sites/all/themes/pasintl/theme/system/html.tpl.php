@@ -89,13 +89,7 @@
 	<div id="fixed-footer"> 		
 		<div id="search-form" class="search"><?php $form = drupal_get_form('search_block_form', TRUE); ?><?php print render($form); ?></div> 
 		<div id="search-lang">
-			<a href="https://cl.pasintl.com/" class="span">
-				SPANISH
-			</a>
-			<a title="PAS International English" href="https://pasintl.com/" class="eng">
-				ENGLISH
-			</a>
-					<div id="cart-lg" class="well well-sm">
+			<div id="cart-lg" class="well well-sm">
 			<a href="/cart">
 			<span class="glyphicon glyphicon-shopping-cart"></span>
 				<?php
