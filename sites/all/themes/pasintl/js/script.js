@@ -82,12 +82,6 @@ jQuery('.categories-menu ul li').click(function() {
     
     jQuery('.accordion-content-7.accordion-content-depth-2.ui-accordion-content').css('display', 'none');
     
-/*
-	jQuery('.accordion-header-7.has-children.item-depth-2').click(function(){
-    	jQuery('.accordion-content-7.accordion-content-depth-2.ui-accordion-content').css('display', 'block');
-		jQuery('.accordion-header-7.has-children.item-depth-2').toggleClass('ui-state-active');    	
-	});
-*/
 
 jQuery('.accordion-header.no-children.item-depth-2').click(function(){
      window.location=jQuery(this).find('a').attr('href'); 
@@ -114,7 +108,6 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
       e.preventDefault();
     });    
     
-    //jQuery('#block-accordion-menu-1').addClass('well');
     jQuery('.region-sidebar-first').removeClass('well');
    
     jQuery("#search-form").hover(function(){
@@ -123,20 +116,7 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
     }, function(){
         jQuery(this).stop().animate({'width': '114px'}, 300);
         jQuery('#cart-lg').fadeIn();        
-    });
-   
-/*
-	jQuery('#fixed-footer-toggle').click(function(){
-	  jQuery(this).animate({'top':'-165px'}, 350); 	  	  
-	  jQuery('#fixed-footer').stop().animate({'bottom':'0px'}, 350); 	  
-	  jQuery(this).addClass('active');  
-	});
-	jQuery('#fixed-footer-toggle.active').click(function(){
-      jQuery(this).animate({'top':'-20px'}, 340);
-	  jQuery('#fixed-footer').animate({'bottom':'-152px'}, 350); 
-	  jQuery(this).removeClass('active');
-    });	
-*/ 
+    }); 
     
     jQuery('#fixed-footer-toggle').click(function() {
 		jQuery('#fixed-footer').animate({'bottom':'0'}, 350);
@@ -204,13 +184,6 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
     	jQuery("#micro-top-drawer").slideToggle(500);
     	jQuery("#drawer-stoggle").toggleClass('active');
     });
-    
-/*
-    jQuery('#micro-menu li').click(function(){
-		jQuery(this).toggleClass('active');		
-    });
-*/
-
     
     jQuery(".micro-slide-obj2").fadeIn().animate({ marginLeft: "0"}, 1500);
     jQuery(".micro-slide-obj1").fadeIn().animate({ marginLeft: "-74"}, 2300);

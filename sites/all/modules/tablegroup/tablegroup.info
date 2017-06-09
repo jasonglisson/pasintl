@@ -3,12 +3,11 @@ description = Views style plugin to display Views results as cells in a table, g
 package = Views
 core = 7.x
 
-files[] = tablegroup.views.inc
 files[] = tablegroup_plugin_style_tablegroup.inc
 
-; Information added by drupal.org packaging script on 2013-10-18
+; Information added by Drupal.org packaging script on 2015-12-02
 version = "7.x-1.x-dev"
 core = "7.x"
 project = "tablegroup"
-datestamp = "1382134787"
+datestamp = "1449078840"
 

@@ -3,9 +3,9 @@ description = Provides a block that lists Taxonomy hierarchy in a javascript acc
 core = 7.x
 dependencies[] = taxonomy
 
-; Information added by drupal.org packaging script on 2013-10-19
-version = "7.x-1.0"
+; Information added by Drupal.org packaging script on 2014-11-07
+version = "7.x-1.0+1-dev"
 core = "7.x"
 project = "taxonomy_accordion"
-datestamp = "1382163462"
+datestamp = "1415359383"
 

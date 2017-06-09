@@ -1,7 +1,11 @@
 <?php
+/**
+ * @file
+ * Main file of tablegroups module.
+ */
 
 /**
- * Implements of hook_views_api().
+ * Implements hook_views_api().
  */
 function tablegroup_views_api() {
   return array(
@@ -10,7 +14,7 @@ function tablegroup_views_api() {
 }
 
 /**
- * Implements of hook_theme().
+ * Implements hook_theme().
  */
 function tablegroup_theme() {
   return array(
@@ -20,6 +24,9 @@ function tablegroup_theme() {
   );
 }
 
+/**
+ * Implements hook_tablegroup_item().
+ */
 function theme_tablegroup_item($variables) {
   return '<div class="tablegroup-item">' . $variables['item'] . '</div>';
 }

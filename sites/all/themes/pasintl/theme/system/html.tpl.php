@@ -1,6 +1,4 @@
 <?php
-//header("Access-Control-Allow-Origin: *");
-
 /**
  * @file
  * Default theme implementation to display the basic html structure of a single
@@ -70,6 +68,7 @@
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <div id="fb-root"></div>
+<!--
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -77,6 +76,7 @@
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1401685363447035&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+-->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   <div id="skip-link">
     <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>

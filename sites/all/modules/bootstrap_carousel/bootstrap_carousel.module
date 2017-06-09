@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Bootstrap carousel create a content type to create carousels as nodes.
+ * Bootstrap carousel module hooks.
  */
 
 /**
@@ -19,12 +19,8 @@ function bootstrap_carousel_libraries_info() {
       'lines' => 2,
     ),
     'files' => array(
-      'js' => array(
-        'js/bootstrap.js',
-      ),
-      'css' => array(
-        'css/bootstrap.css',
-      ),
+      'js' => array('js/bootstrap.js'),
+      'css' => array('css/bootstrap.css'),
     ),
   );
 
@@ -52,12 +48,25 @@ function bootstrap_carousel_node_info() {
 function bootstrap_carousel_field_info() {
   return array(
     'bootstrap_carousel' => array(
-      'label' => t('Carousel Slides'),
+      'label' => t('Bootstrap carousel'),
       'description' => t('The slides of the carousel'),
       'default_widget' => 'bootstrap_carousel_widget',
       'default_formatter' => 'bootstrap_carousel_formatter',
+      'property_type' => 'bootstrap_carousel',
+      'property_callbacks' => array('bootstrap_carousel_property_info_callback'),
+      'no_ui' => TRUE,
     ),
   );
+}
+
+/**
+ * Implements hook_property_info_callback().
+ */
+function bootstrap_carousel_property_info_callback(&$info, $entity_type, $field, $instance, $field_type) {
+  $property = &$info[$entity_type]['bundles'][$instance['bundle']]['properties'][$field['field_name']];
+
+  $property['getter callback'] = 'entity_metadata_field_verbatim_get';
+  $property['setter callback'] = 'entity_metadata_field_verbatim_set';
 }
 
 /**
@@ -157,8 +166,7 @@ function _bootstrap_carousel_process(&$item, $delta, $field, $entity) {
  * Implements hook_field_is_empty().
  */
 function bootstrap_carousel_field_is_empty($item, $field) {
-
-  /*Image or Video are required for each valid slide item*/
+  // Image or Video are required for each valid slide item.
   if (empty($item['carousel_image']) && empty($item['carousel_video'])) {
     return TRUE;
   }
@@ -240,10 +248,7 @@ function bootstrap_carousel_theme_registry_alter(&$theme_registry) {
   _theme_process_registry($theme_registry_copy, 'phptemplate', 'theme_engine', NULL, $mod_path);
   $theme_registry += array_diff_key($theme_registry_copy, $theme_registry);
 
-  $hooks = array('node');
-  foreach ($hooks as $h) {
-    _bootstrap_carousel_insert_after_first_element($theme_registry[$h]['theme paths'], $mod_path);
-  }
+  _bootstrap_carousel_insert_after_first_element($theme_registry['node']['theme paths'], $mod_path);
 }
 
 /**
@@ -260,12 +265,9 @@ function _bootstrap_carousel_insert_after_first_element(&$a, $element) {
  * Implements hook_node_view().
  */
 function bootstrap_carousel_node_view($node, $view_mode, $langcode) {
-  $menu_object = menu_get_object();
-  if (isset($menu_object)) {
-    if ($node->type === 'bootstrap_carousel' && $menu_object->nid == $node->nid) {
-      _bootstrap_carousel_load_javascript($node);
-      _bootstrap_carousel_load_css();
-    }
+  if ($node->type === 'bootstrap_carousel') {
+    _bootstrap_carousel_load_javascript($node);
+    _bootstrap_carousel_load_css();
   }
 }
 
@@ -273,50 +275,55 @@ function bootstrap_carousel_node_view($node, $view_mode, $langcode) {
  * Implements hook_ctools_render_alter().
  */
 function bootstrap_carousel_ctools_render_alter(&$info, &$page, &$context) {
-  $is_carousel = FALSE;
-  if ($page) {
-    foreach ($context['handler']->conf['display']->content as $id => $panel_content) {
-      if ($panel_content->type == 'node') {
-        $node = node_load($panel_content->configuration['nid']);
-        if ($node->type == 'bootstrap_carousel') {
-          _bootstrap_carousel_load_javascript($node);
-          _bootstrap_carousel_load_css();
-        }
+  if (!$page) {
+    return FALSE;
+  }
+
+  if (!isset($context['handler']->conf['display']->content)) {
+    return FALSE;
+  }
+
+  foreach ($context['handler']->conf['display']->content as $id => $panel_content) {
+    if ($panel_content->type == 'node') {
+      $node = node_load($panel_content->configuration['nid']);
+      if ($node->type == 'bootstrap_carousel') {
+        _bootstrap_carousel_load_javascript($node);
+        _bootstrap_carousel_load_css();
       }
     }
   }
-
 }
 
 /**
  * Add bootstrap javascript and library.
  */
 function _bootstrap_carousel_load_javascript($node) {
-  /**
-  *  @TODO: Load only if the node has video
-  *  @TODO: Turn the URL API configurable by the admin users
-  */
-  drupal_add_js('https://www.youtube.com/player_api', 'external');
-      
-  $carousel_interval = field_get_items('node', $node, 'field_carousel_interval');
-  libraries_load('bootstrap');
-  drupal_add_js(drupal_get_path('module', 'bootstrap_carousel') . '/scripts/bootstrap_carousel.js');
+  $carousel_settings = array(
+    'interval' => FALSE,
+    'pause' => '',
+  );
 
-  $control_options = field_get_items('node', $node, 'field_control_options');
-  $pause_event = "";
+  $node = entity_metadata_wrapper('node', $node);
 
-  if (is_array($control_options)) {
-    foreach ($control_options as $control) {
-      if ($control['value'] == '3') {
-        $pause_event = "hover";
-      }
+  $interval = $node->field_carousel_interval->value();
+  if (!empty($interval)) {
+    $carousel_settings['interval'] = $interval;
+  }
+
+  $control_options = $node->field_control_options->value();
+  if (in_array(3, $control_options)) {
+    $carousel_settings['pause'] = 'hover';
+  }
+
+  foreach ($node->field_slides->value() as $slide) {
+    if (isset($slide['carousel_video'])) {
+      drupal_add_js(variable_get('bootstrap_carousel_youtube_player_api', 'https://www.youtube.com/player_api'), 'external');
     }
   }
 
-  $carousel_settings = array(
-    'interval' => !empty($carousel_interval[0]['value']) ? $carousel_interval[0]['value'] : FALSE,
-    'pause' => $pause_event,
-  );
+  libraries_load('bootstrap');
+  drupal_add_js(drupal_get_path('module', 'bootstrap_carousel') . '/scripts/bootstrap_carousel.js');
+
   drupal_add_js(array('bootstrap_carousel' => $carousel_settings), 'setting');
 }
 

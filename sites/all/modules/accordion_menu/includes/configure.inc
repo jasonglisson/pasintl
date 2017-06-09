@@ -25,21 +25,6 @@ function _accordion_menu_block_configure($delta) {
     drupal_set_message(t('If you enable the !module module, then you may display menu blocks with an accordion effect.', array('!module' => l('Menu Block', 'https://drupal.org/project/menu_block'))), 'warning');
   }
 
-  // We use $_POST as here we don't have access to $form_state.
-  if (!empty($_POST) && isset($_POST['accordion_menu_menu_source']) && $_POST['accordion_menu_menu_source'] != '') {
-    $menu_name = $_POST['accordion_menu_menu_source'];
-    $max_depth = _accordion_menu_get_max_depth($menu_name);
-    $options_depth = drupal_map_assoc(range(1, $max_depth));
-  }
-  elseif (!empty($config['menu_source'])) {
-    $menu_name = $config['menu_source'];
-    $max_depth = _accordion_menu_get_max_depth($menu_name);
-    $options_depth = drupal_map_assoc(range(1, $max_depth));
-  }
-  else {
-    $options_depth = array('none' => t('- Select a Menu Source -'));
-  }
-
   // Build form.
   $fs1['basic_options'] = array(
     '#type' => 'fieldset',
@@ -58,20 +43,6 @@ function _accordion_menu_block_configure($delta) {
     '#description' => t('Select the menu to display as an accordion.'),
     '#default_value' => $config['menu_source'],
     '#options' => $options,
-    '#ajax' => array(
-      'callback' => '_accordion_menu_form_menu_depth_options',
-      'wrapper' => 'accordion-menu-depth',
-      'replace' => 'replace',
-    ),
-  );
-  $form1['accordion_menu_menu_depth'] = array(
-    '#type' => 'select',
-    '#title' => t('Accordion depth'),
-    '#description' => t('Select the depth to which the accordion must propagate.'),
-    '#default_value' => $config['menu_depth'],
-    '#options' => $options_depth,
-    '#prefix' => '<div id="accordion-menu-depth">',
-    '#suffix' => '</div>',
   );
   if (module_exists('menu_block')) {
     $form1['accordion_menu_block_source'] = array(
@@ -235,10 +206,8 @@ function _accordion_menu_block_validate($form, &$form_state) {
   $key1 = 'menu_source';
   $value1 = $form_state['values']['accordion_menu_' . $key1];
   $key2 = 'block_source';
-  $value2 = isset($form_state['values']['accordion_menu_' . $key2]) ? $form_state['values']['accordion_menu_' . $key2] : NULL;
-  $key3 = 'menu_depth';
-  $value3 = $form_state['values']['accordion_menu_' . $key3];
-  if ($value2) {
+  $value2 = $form_state['values']['accordion_menu_' . $key2];
+  if (isset($value2)) {
     if (empty($value1) && empty($value2)) {
       form_set_error('accordion_menu_' . $key1, t('Select either a menu source or a menu block source. (' . $key1 . ')'));
       form_set_error('accordion_menu_' . $key2, t('Select either a menu source or a menu block source. (' . $key2 . ')'));
@@ -246,10 +215,6 @@ function _accordion_menu_block_validate($form, &$form_state) {
   }
   elseif (empty($value1)) {
     form_set_error('accordion_menu_' . $key1, t('Select a menu source. (' . $key1 . ')'));
-  }
-  // In any case, we DO need the depth.
-  if (empty($value3) || $value3 == 'none') {
-    form_set_error('accordion_menu_' . $key3, t('Select a depth of the menu for accordion.'));
   }
 }
 
