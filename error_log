@@ -27,3 +27,4 @@
 [24-May-2017 21:47:05 America/New_York] PHP Fatal error:  Class 'JMS\Serializer\Annotation\Type' not found in /home/pasintlc/public_html/sites/all/libraries/anet_php_sdk/lib/net/authorize/util/SensitiveDataConfigType.php on line 6
 [25-May-2017 10:24:45 America/New_York] PHP Fatal error:  Class 'JMS\Serializer\Annotation\Type' not found in /home/pasintlc/public_html/sites/all/libraries/anet_php_sdk/lib/net/authorize/util/SensitiveDataConfigType.php on line 6
 [25-May-2017 10:25:25 America/New_York] PHP Fatal error:  Class 'JMS\Serializer\Annotation\Type' not found in /home/pasintlc/public_html/sites/all/libraries/anet_php_sdk/lib/net/authorize/util/SensitiveDataConfigType.php on line 6
+[18-Jun-2017 22:19:13 America/New_York] PHP Fatal error:  Call to undefined function entity_translation_language_load() in /home/pasintlc/public_html/includes/menu.inc on line 603
