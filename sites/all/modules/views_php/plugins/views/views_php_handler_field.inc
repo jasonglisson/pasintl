@@ -200,23 +200,23 @@ class views_php_handler_field extends views_handler_field {
   }
 
   /**
-   * Implements views_handler_field#pre_render().
-   */
-  function pre_render(&$values) {
-    if (!empty($this->options['php_output'])) {
-      $this->php_output_lamda_function = create_function('$view, $handler, &$static, $row, $data, $value', ' ?>' . $this->options['php_output'] . '<?php ');
-    }
-  }
-
-  /**
    * Implements views_handler_field#render().
    */
   function render($values) {
-    // Execute output PHP code.
-    if (!empty($this->options['php_output']) && isset($this->php_output_lamda_function)) {
+    if (!empty($this->options['php_output'])) {
+      $this->php_output_lamda_function = create_function('$view, $handler, &$static, $row, $data, $value', ' ?>' . $this->options['php_output'] . '<?php ');
+
       $normalized_row = new stdClass;
-      foreach ($this->view->style_plugin->rendered_fields{$this->view->row_index} as $field => $value) {
-        $normalized_row->$field = $value;
+      if (empty($this->view->style_plugin->rendered_fields)) {
+        foreach ($this->view->field as $id => $field) {
+          if ($field->field_alias != $this->field_alias) {
+            $normalized_row->$id = $field->get_value($values);
+          }
+        }
+      } else {
+        foreach ($this->view->style_plugin->rendered_fields{$this->view->row_index} as $field => $value) {
+          $normalized_row->$field = $value;
+        }
       }
 
       $function = $this->php_output_lamda_function;
@@ -225,8 +225,13 @@ class views_php_handler_field extends views_handler_field {
       $value = ob_get_clean();
     }
     else {
-      $value = check_plain($values->{$this->field_alias});
+      if (isset($values->{$this->field_alias})) {
+        $value = check_plain($values->{$this->field_alias});
+      }
     }
-    return $value;
+
+    if (isset($value)) {
+      return $value;
+    }
   }
 }

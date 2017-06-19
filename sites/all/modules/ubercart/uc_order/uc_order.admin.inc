@@ -1255,12 +1255,6 @@ function uc_order_mail_invoice_form_validate($form, &$form_state) {
  */
 function uc_order_mail_invoice_form_submit($form, &$form_state) {
   $order = uc_order_load($form_state['values']['order_id']);
-
-  if ($order === FALSE) {
-    drupal_set_message(t('Order @order_id does not exist.', array('@order_id' => $order_id)));
-    drupal_goto('admin/store/orders');
-  }
-
   $recipient = check_plain($form_state['values']['email']);
 
   $params = array('order' => $order);
@@ -1280,7 +1274,7 @@ function uc_order_mail_invoice_form_submit($form, &$form_state) {
  * Displays a log of changes made to an order.
  */
 function uc_order_log($order) {
-  $result = db_query("SELECT * FROM {uc_order_log} WHERE order_id = :id ORDER BY created, order_log_id", array(':id' => $order->order_id));
+  $result = db_query("SELECT * FROM {uc_order_log} WHERE order_id = :id ORDER BY order_log_id DESC", array(':id' => $order->order_id));
 
   $header = array(t('Time'), t('User'), t('Changes'));
   $rows = array();

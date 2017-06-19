@@ -8,30 +8,13 @@
 ?>
 <div id="carousel-bootstrap" class="carousel slide">
   <?php
-    $carousel_items = field_get_items('node', $node, 'field_slides');
-
-    $control_options = field_get_items('node', $node, 'field_control_options');
-    $arrow_enabled = FALSE;
-    $bullets_enabled = FALSE;
-
-    if (is_array($control_options)) :
-      foreach($control_options as $control) :
-        switch($control['value']) :
-          case '1':
-            $arrow_enabled = TRUE;
-            break;
-
-          case '2':
-            $bullets_enabled = TRUE;
-            break;
-
-        endswitch;
-      endforeach;
-    endif;
+    $node = entity_metadata_wrapper('node', $node);
+    $control_options = $node->field_control_options->value();
+    $carousel_items = $node->field_slides->value();
   ?>
 
-  <?php if ($bullets_enabled) : ?>
-    <?php if (is_array($carousel_items)) : ?>
+  <?php if (in_array(2, $control_options)) : ?>
+    <?php if (!empty($carousel_items)) : ?>
     <div class="bullets-control">
       <ol class="carousel-indicators">
       <?php foreach ($carousel_items as $id => $carousel_slide) : ?>
@@ -43,7 +26,7 @@
   <?php endif; ?>
 
   <div class="carousel-inner">
-  <?php if (is_array($carousel_items)) : ?>
+  <?php if (!empty($carousel_items)) : ?>
     <?php foreach ($carousel_items as $id => $carousel_slide) : ?>
       <div class="item<?php ($id == '0') ? print ' active' : print ''; ?>">
         <?php if(!empty($carousel_slide['carousel_image'])) : ?>
@@ -73,7 +56,7 @@
   <?php endif; ?>
   </div><!-- .carousel-inner -->
 
-  <?php if($arrow_enabled) : ?>
+  <?php if (in_array(1, $control_options)) : ?>
     <!--  next and previous controls here
           href values must reference the id for this carousel -->
     <a class="carousel-control left" href="#carousel-bootstrap" data-slide="prev">&lsaquo;</a>

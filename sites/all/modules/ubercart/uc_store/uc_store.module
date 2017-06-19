@@ -172,8 +172,8 @@ function uc_store_menu() {
   $items['admin/store/settings/countries/%/disable'] = array(
     'title' => 'Disable a country',
     'description' => 'Disable a country from use.',
-    'page callback' => 'uc_country_disable',
-    'page arguments' => array(4),
+    'page callback' => '_uc_country_perform_country_action',
+    'page arguments' => array('uc_country_disable', 4),
     'access arguments' => array('administer store'),
     'type' => MENU_CALLBACK,
     'file' => 'uc_store.countries.inc',
@@ -181,8 +181,8 @@ function uc_store_menu() {
   $items['admin/store/settings/countries/%/enable'] = array(
     'title' => 'Enable a country',
     'description' => 'Enable a disabled country.',
-    'page callback' => 'uc_country_enable',
-    'page arguments' => array(4),
+    'page callback' => '_uc_country_perform_country_action',
+    'page arguments' => array('uc_country_enable', 4),
     'access arguments' => array('administer store'),
     'type' => MENU_CALLBACK,
     'file' => 'uc_store.countries.inc',
@@ -198,8 +198,8 @@ function uc_store_menu() {
   $items['admin/store/settings/countries/%/update/%'] = array(
     'title' => 'Update a country',
     'description' => 'Update an installed country.',
-    'page callback' => 'uc_country_update',
-    'page arguments' => array(4, 6),
+    'page callback' => '_uc_country_perform_country_action',
+    'page arguments' => array('uc_country_update', 4, 6),
     'access arguments' => array('administer store'),
     'type' => MENU_CALLBACK,
     'file' => 'uc_store.countries.inc',
@@ -212,7 +212,7 @@ function uc_store_menu() {
  * Access callback for top-level store administration menu item.
  */
 function uc_store_admin_access() {
-  return user_access('administer_store')
+  return user_access('administer store')
     || user_access('view all orders')
     || user_access('view customers')
     || user_access('administer products')
@@ -480,7 +480,7 @@ function uc_store_validate_number(&$element, &$form_state) {
  */
 function uc_store_validate_uc_quantity(&$element, &$form_state) {
   if (!preg_match('/^\d+$/', $element['#value'])) {
-    form_error($element, t('The quantity must be a number.'));
+    form_error($element, t('The quantity must be an integer.'));
   }
   elseif (empty($element['#allow_zero']) && !$element['#value']) {
     form_error($element, t('The quantity cannot be zero.'));

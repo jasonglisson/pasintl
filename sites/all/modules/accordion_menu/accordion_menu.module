@@ -104,7 +104,6 @@ function accordion_menu_config($delta = NULL) {
     // Our settings.
     'menu_name' => 'Menu ' . $delta,
     'menu_source' => 'navigation',
-    'menu_depth' => 'none',
     'block_source' => '',
     'script_scope' => 'footer',
     'header_link' => FALSE,
@@ -149,33 +148,4 @@ function accordion_menu_config($delta = NULL) {
   $config['delta'] = $delta;
 
   return $config;
-}
-
-/**
- * Helper function that gets an option array of possible depths,
- * for a specific selected menu.
- */
-function _accordion_menu_form_menu_depth_options($form, $form_state) {
-  // Get rid of the messages.
-  drupal_get_messages(NULL, TRUE);
-  // Return our menu depth form element.
-  return $form['settings']['tabs']['basic']['accordion_menu_menu_depth'];
-}
-
-/**
- * Helper function that returns the maximum depth of a menu.
- *
- * @param string $menu_name
- *   Menu name.
- *
- * @return int
- *   Menu max depth.
- */
-function _accordion_menu_get_max_depth($menu_name) {
-  $query = db_select('menu_links', 'ml')
-           ->condition('menu_name', $menu_name, '=');
-  $query->addExpression('max(depth)', 'maxdepth');
-  $max_depth = $query->execute()->fetchAssoc();
-
-  return isset($max_depth['maxdepth']) ? $max_depth['maxdepth'] : 0;
 }

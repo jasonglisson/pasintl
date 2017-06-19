@@ -103,12 +103,13 @@ Drupal.rules = Drupal.rules || {};
       });
     });
 
-    // Newer versions of jQuery UI use element.data('ui-autocomplete'), older versions use element.data('autocomplete').
+    // Newer versions of jQuery UI use element.data('ui-autocomplete'), older
+    // versions use element.data('autocomplete').
     var autocompleteDataKey = typeof(this.jqObject.data('autocomplete')) === 'object' ? 'autocomplete' : 'ui-autocomplete';
 
     // Since jquery autocomplete by default strips html text by using .text()
     // we need our own _renderItem function to display html content.
-		this.jqObject.data(autocompleteDataKey)._renderItem = function(ul, item) {
+    this.jqObject.data(autocompleteDataKey)._renderItem = function(ul, item) {
       return $("<li></li>").data("item.autocomplete", item).append("<a>" + item.label + "</a>").appendTo(ul);
     };
 

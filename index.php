@@ -20,4 +20,4 @@ require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 menu_execute_active_handler();
 
-require_once DRUPAL_ROOT . '/sites/all/libraries/anet_php_sdk/autoload.php';
+require 'vendor/autoload.php';

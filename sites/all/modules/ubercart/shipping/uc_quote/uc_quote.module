@@ -59,15 +59,6 @@ function uc_quote_menu() {
 }
 
 /**
- * Implements hook_init().
- */
-function uc_quote_init() {
-  global $conf;
-  $conf['i18n_variables'][] = 'uc_quote_err_msg';
-  $conf['i18n_variables'][] = 'uc_quote_pane_description';
-}
-
-/**
  * Implements hook_theme().
  */
 function uc_quote_theme() {
@@ -563,6 +554,11 @@ function uc_checkout_pane_quotes($op, &$order, $form = NULL, &$form_state = NULL
         '#weight' => 1,
       );
 
+      // If this was an Ajax request, we reinvoke the 'prepare' op to ensure
+      // that we catch any changes in panes heavier than this one.
+      if (isset($form_state['triggering_element'])) {
+        uc_checkout_pane_quotes('prepare', $order, $form, $form_state);
+      }
       $contents['quotes'] += $order->quote_form;
 
       $form_state['uc_ajax']['uc_quote']['panes][quotes][quote_button'] = array(
