@@ -101,3 +101,4 @@
 [19-Jun-2017 10:36:41 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
 [19-Jun-2017 10:38:49 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
 [19-Jun-2017 10:38:51 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[09-Aug-2017 07:20:33 America/New_York] PHP Fatal error:  Class 'UcCartItemController' not found in /home/pasintlc/public_html/includes/common.inc on line 8048
