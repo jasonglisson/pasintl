@@ -145,6 +145,7 @@ DirectoryIndex index.php index.html index.htm
       Header append Vary Accept-Encoding
     </FilesMatch>
   </IfModule>
+<<<<<<< HEAD
 </IfModule>
 
 # Add headers to all responses.
@@ -152,3 +153,6 @@ DirectoryIndex index.php index.html index.htm
   # Disable content sniffing, since it's an attack vector.
   Header always set X-Content-Type-Options nosniff
 </IfModule>
+=======
+</IfModule>
+>>>>>>> a907856924f94811def9f2ef5d659d667cf914e5
