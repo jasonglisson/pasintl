@@ -213,13 +213,13 @@ function webform_validation_manage_rule($form, $form_state, $node, $action = 'ad
     '#default_value' => (isset($rule['components'])) ? array_keys($rule['components']) : array(),
   );
 
-  if (!empty($rule_validator['custom_data']) && is_array($rule_validator['custom_data'])) {
+  if (isset($rule_validator['custom_data']) && is_array($rule_validator['custom_data'])) {
     $required = isset($rule_validator['custom_data']['required']) ? $rule_validator['custom_data']['required'] : TRUE;
     $form['rule']['data'] = array(
       '#type' => 'textfield',
       '#title' => $rule_validator['custom_data']['label'],
       '#description' => $rule_validator['custom_data']['description'],
-      '#required' => (bool) $required,
+      '#required' => ($required !== FALSE) ? TRUE : FALSE,
       '#size' => 60,
       '#maxlength' => NULL,
       '#default_value' => $rule['data'],
@@ -227,7 +227,7 @@ function webform_validation_manage_rule($form, $form_state, $node, $action = 'ad
     );
   }
 
-  if (!empty($rule_validator['negatable'])) {
+  if (isset($rule_validator['negatable'])) {
     $form['rule']['negate'] = array(
       '#type' => 'checkbox',
       '#title' => t('Negate rule'),
@@ -237,14 +237,14 @@ function webform_validation_manage_rule($form, $form_state, $node, $action = 'ad
     );
   }
 
-  if (!empty($rule_validator['custom_error'])) {
+  if (isset($rule_validator['custom_error'])) {
     $form['rule']['error_message'] = array(
       '#type' => 'textfield',
       '#title' => t('Custom error message'),
       '#description' => t("Specify an error message that should be displayed when user input doesn't pass validation"),
       '#required' => TRUE,
       '#size' => 60,
-      '#maxlength' => 2048,
+      '#maxlength' => 255,
       '#default_value' => $rule['error_message'],
       '#weight' => 5,
     );
@@ -254,12 +254,6 @@ function webform_validation_manage_rule($form, $form_state, $node, $action = 'ad
     '#type' => 'submit',
     '#value' => (isset($rule['ruleid'])) ? t('Save rule') : t('Add rule'),
     '#weight' => 25,
-  );
-
-  $destination = drupal_get_destination();
-  $form['rule']['cancel'] = array(
-    '#markup' => l(t('Cancel'), $destination['destination']),
-    '#weight' => 26,
   );
 
   return $form;
@@ -307,12 +301,11 @@ function webform_validation_manage_rule_submit($form, &$form_state) {
 function webform_validation_get_webform_components($node, $validator) {
   $ret = array();
   $components = $node->webform['components'];
+  $valid_components = webform_validation_valid_component_types($validator);
   if ($components) {
-    $valid_components = webform_validation_valid_component_types($validator);
-    $component_names = webform_component_list($node, NULL, 'path');
     foreach ($components as $cid => $component) {
       if (in_array($component['type'], $valid_components)) {
-        $ret[$cid] = $component_names[$cid];
+        $ret[$cid] = $component['name'];
       }
     }
   }
