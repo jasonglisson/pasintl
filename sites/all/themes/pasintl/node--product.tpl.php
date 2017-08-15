@@ -78,8 +78,7 @@
  *
  * @ingroup themeable
  */
-?> 
-<?php dsm($node); ?>
+?> <!-- <?php print_r($node); ?> -->
 
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
  <?php print theme('breadcrumb', array('breadcrumb' => drupal_get_breadcrumb())); ?>
@@ -92,15 +91,15 @@
 	<div class="col-xs-12 col-sm-12 col-md-6">  	
 	  	<br>
 	  	<div id="price">
-				<?php  print uc_currency_format($node->sell_price);  */
+				<?php /* print uc_currency_format($node->sell_price);  */
 				
 				$sell_price = uc_currency_format($node->sell_price);
 				$list_price = uc_currency_format($node->list_price);
 				
 				if ($sell_price < $list_price) {
-  				echo "<div class=\"price-box\">Price: <span class=\"offer-price\">" . $list_price . "</span><span class=\"sale-price\"> " . $sell_price . "</span></div>";
-          uc_currency_format($node->sell_price);
-				} elseif ($sell_price == $list_price) {
+					//echo "<div class=\"price-box\">Price: <span class=\"offer-price\">" . $list_price . "</span><span class=\"sale-price\"> " . $sell_price . "</span></div>";
+					uc_currency_format($node->sell_price);
+				} else {
 					echo "Price: " . uc_currency_format($node->list_price);
 				}
 			?>
