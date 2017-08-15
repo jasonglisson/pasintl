@@ -78,10 +78,11 @@
  *
  * @ingroup themeable
  */
-?> <!-- <?php print_r($node); ?> -->
+?>
 
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
- <?php print theme('breadcrumb', array('breadcrumb' => drupal_get_breadcrumb())); ?>
+  <?php dsm($node); ?>
+  <?php print theme('breadcrumb', array('breadcrumb' => drupal_get_breadcrumb())); ?>
   	<div class="col-xs-12 col-sm-12 col-md-6 product-images">
 	  	<div class="well product-image-uc"><?php
 		  	echo views_embed_view('product_images');?>	
