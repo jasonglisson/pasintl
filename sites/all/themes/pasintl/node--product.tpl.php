@@ -78,7 +78,8 @@
  *
  * @ingroup themeable
  */
-?> <!-- <?php print_r($node); ?> -->
+?> 
+<?php dsm($node); ?>
 
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
  <?php print theme('breadcrumb', array('breadcrumb' => drupal_get_breadcrumb())); ?>
