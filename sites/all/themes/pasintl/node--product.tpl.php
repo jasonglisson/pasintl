@@ -97,12 +97,15 @@
 				$sell_price = uc_currency_format($node->sell_price);
 				$list_price = uc_currency_format($node->list_price);
 				
-				if ($sell_price < $list_price) {
+				//if ($sell_price < $list_price) {
 					//echo "<div class=\"price-box\">Price: <span class=\"offer-price\">" . $list_price . "</span><span class=\"sale-price\"> " . $sell_price . "</span></div>";
+/*
 					echo "Price: " . uc_currency_format($node->sell_price);
 				} else {
 					echo "Price: " . uc_currency_format($node->list_price);
 				}
+*/
+        echo "Price: " . uc_currency_format($node->sell_price);
 			?>
 		</div>	
 	  	<br>
