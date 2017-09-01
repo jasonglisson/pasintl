@@ -516,7 +516,45 @@
 				if (isset($product3['und'][0]['entity']->field_short_description['und'][0]['value'])) {
 				print $product3['und'][0]['entity']->field_short_description['und'][0]['value'];
 				}?>		
-			</div>		
+			</div>	
+			<div id="item4-content" class="container">
+				<span class="close glyphicon glyphicon-remove"></span>			
+				<div class="micro-product-img">
+					<div style="background-image:url(/sites/default/files/<?php $product3 = $node->field_product_4;
+					if (isset($product4['und'][0]['entity']->uc_product_image['und'][0]['filename'])) {
+					print $product4['und'][0]['entity']->uc_product_image['und'][0]['filename'];
+					}?>);"></div>
+				</div>				
+				<h2><?php $product4 = $node->field_product_4;
+					if (isset($product4['und'][0]['entity']->title)) {
+					print $product4['und'][0]['entity']->title;
+				}?></h2>
+			<div id="price">
+				<?php /* print uc_currency_format($node->sell_price);  */			  
+					$sell_price = uc_currency_format($product4['und'][0]['entity']->sell_price);
+					$list_price = uc_currency_format($product4['und'][0]['entity']->list_price);
+					
+					if ($sell_price < $list_price) {
+						echo "<div class=\"price-box\">Price: <span class=\"offer-price\">" . $list_price . "</span><span class=\"sale-price\"> " . $sell_price . "</span>
+	</div>";
+					} else {
+						echo "Price: " . uc_currency_format($product4['und'][0]['entity']->sell_price);
+					}
+				?>
+			</div>
+				<?php
+				$node4 = node_load($product4['und'][0]['entity']->nid);
+				$add_to_cart = array(
+				  '#theme' => 'uc_product_add_to_cart',
+				  '#form' => drupal_get_form('uc_product_add_to_cart_form_' . $product4['und'][0]['entity']->nid, $node4),
+				);
+				print drupal_render($add_to_cart);				
+				?>					
+				<?php $product4 = $node->field_product_3;
+				if (isset($product4['und'][0]['entity']->field_short_description['und'][0]['value'])) {
+				  print $product4['und'][0]['entity']->field_short_description['und'][0]['value'];
+				}?>		
+			</div>					
 		</div>		
 	</div>
 </section>	    
