@@ -248,9 +248,11 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
 		jQuery("#item1-content").fadeOut(); 
 		jQuery("#item2-content").fadeOut();
 		jQuery("#item3-content").fadeOut();
+		jQuery("#item4-content").fadeOut();		
 		jQuery("#s1i1").removeClass("active");
 		jQuery("#s1i2").removeClass("active");	
-		jQuery("#s1i3").removeClass("active");					
+		jQuery("#s1i3").removeClass("active");	
+		jQuery("#s1i4").removeClass("active");						
 		jQuery("#dark-overlay").fadeOut();				 		
 	});
 	
@@ -258,7 +260,8 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
 		jQuery(this).fadeOut();
 		jQuery("#item1-content").fadeOut(); 
 		jQuery("#item2-content").fadeOut();
-		jQuery("#item3-content").fadeOut();		
+		jQuery("#item3-content").fadeOut();
+		jQuery("#item4-content").fadeOut();				
 		jQuery("#micro-video").fadeOut();
 		player.stopVideo();		 		
 	});
