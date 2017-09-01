@@ -191,7 +191,8 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
 	jQuery("#s1i1").click(function() {
 		jQuery(this).toggleClass("active");
 		jQuery("#s1i2").removeClass("active");
-		jQuery("#s1i3").removeClass("active");	
+		jQuery("#s1i3").removeClass("active");
+		jQuery("#s1i4").removeClass("active");			
 		jQuery("#item1-content").fadeIn(); 		
 		jQuery("#dark-overlay").fadeIn();			
 	});
@@ -199,7 +200,8 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
 	jQuery("#s1i2").click(function() {
 		jQuery(this).toggleClass("active");
 		jQuery("#s1i1").removeClass("active");
-		jQuery("#s1i3").removeClass("active");	
+		jQuery("#s1i3").removeClass("active");
+		jQuery("#s1i4").removeClass("active");		
 		jQuery("#item2-content").fadeIn(); 		
 		jQuery("#dark-overlay").fadeIn();													
 	});
@@ -208,7 +210,17 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
 		jQuery(this).toggleClass("active");
 		jQuery("#s1i1").removeClass("active");
 		jQuery("#s1i2").removeClass("active");	
+		jQuery("#s1i4").removeClass("active");			
 		jQuery("#item3-content").fadeIn(); 		
+		jQuery("#dark-overlay").fadeIn();								
+	});
+
+	jQuery("#s1i4").click(function() {
+		jQuery(this).toggleClass("active");
+		jQuery("#s1i1").removeClass("active");
+		jQuery("#s1i2").removeClass("active");
+		jQuery("#s1i3").removeClass("active");			
+		jQuery("#item4-content").fadeIn(); 		
 		jQuery("#dark-overlay").fadeIn();								
 	});
 			
