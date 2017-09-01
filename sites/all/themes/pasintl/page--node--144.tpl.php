@@ -383,21 +383,26 @@
 	<div id="button-arrow">
 		<div class="container">
 		<div class="col-lg-12 col-md-12">
-			<div class="col-lg-4 col-md-4">
+			<div class="col-lg-3 col-md-3ß">
 				<div id="arrow1" class="arrow">
 					<div id="arrow-img"></div>
 				</div>
 			</div>	
-			<div class="col-lg-4 col-md-4">
+			<div class="col-lg-3 col-md-3">
 				<div id="arrow2" class="arrow">
 					<div id="arrow-img"></div>
 				</div>
 			</div>			
-			<div class="col-lg-4 col-md-4">
+			<div class="col-lg-3 col-md-3">
 				<div id="arrow3" class="arrow">
 					<div id="arrow-img"></div>
 				</div>
 			</div>	
+			<div class="col-lg-3 col-md-3">
+				<div id="arrow4" class="arrow">
+					<div id="arrow-img"></div>
+				</div>
+			</div>			
 		</div>	
 		</div>						
 	</div>		
@@ -520,9 +525,9 @@
 			<div id="item4-content" class="container">
 				<span class="close glyphicon glyphicon-remove"></span>			
 				<div class="micro-product-img">
-					<div style="background-image:url(/sites/default/files/<?php $product3 = $node->field_product_4;
-					if (isset($product4['und'][0]['entity']->uc_product_image['und'][0]['filename'])) {
-					print $product4['und'][0]['entity']->uc_product_image['und'][0]['filename'];
+					<div style="background-image:url(/sites/default/files/<?php $product4 = $node->field_product_4;
+					if (isset($product4['und'][0]['entity']->uc_product_image['und'][0]['uri'])) {
+					print $product4['und'][0]['entity']->uc_product_image['und'][0]['uri'];
 					}?>);"></div>
 				</div>				
 				<h2><?php $product4 = $node->field_product_4;
@@ -550,7 +555,7 @@
 				);
 				print drupal_render($add_to_cart);				
 				?>					
-				<?php $product4 = $node->field_product_3;
+				<?php $product4 = $node->field_product_4;
 				if (isset($product4['und'][0]['entity']->field_short_description['und'][0]['value'])) {
 				  print $product4['und'][0]['entity']->field_short_description['und'][0]['value'];
 				}?>		
