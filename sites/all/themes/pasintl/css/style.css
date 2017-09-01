@@ -1304,7 +1304,8 @@ html .microsite {
 .microsite .micro-product-img div {
 	width:250px;
 	height:250px;
-	background-size:cover;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 #micro-sub-video-text {
