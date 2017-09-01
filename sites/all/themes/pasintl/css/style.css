@@ -1638,15 +1638,15 @@ html .microsite {
 	height: 35px;
 }
 
-#item1, #item2, #item3 {
+#item1, #item2, #item3, #item4 {
 	margin: 20px 0;
 }
 
-#item1-content, #arrow1, #item2-content, #arrow2, #item3-content, #arrow3 {
+#item1-content, #arrow1, #item2-content, #arrow2, #item3-content, #arrow3, #item4-content, #arrow4{
 	display:none;
 }
 
-.microsite #item1-content, .microsite #item2-content, .microsite #item3-content {
+.microsite #item1-content, .microsite #item2-content, .microsite #item3-content, .microsite #item4-content {
 	max-height:80%;
 	padding:25px;
 	border-radius: 7px;	
