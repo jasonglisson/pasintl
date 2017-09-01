@@ -153,3 +153,15 @@
 [09-Aug-2017 09:08:58 America/New_York] PHP Fatal error:  Call to undefined function i18n_string_translate_langcode() in /home/pasintlc/public_html/sites/all/modules/i18n/i18n_taxonomy/i18n_taxonomy.module on line 1020
 [09-Aug-2017 09:10:56 America/New_York] PHP Fatal error:  Call to undefined function i18n_string_translate_langcode() in /home/pasintlc/public_html/sites/all/modules/i18n/i18n_taxonomy/i18n_taxonomy.module on line 1020
 [09-Aug-2017 09:21:38 America/New_York] PHP Fatal error:  Call to undefined function i18n_string_translate_langcode() in /home/pasintlc/public_html/sites/all/modules/i18n/i18n_taxonomy/i18n_taxonomy.module on line 1020
+[14-Aug-2017 21:53:38 America/New_York] PHP Parse error:  syntax error, unexpected '*' in /home/pasintlc/public_html/sites/all/themes/pasintl/node--product.tpl.php on line 95
+[14-Aug-2017 21:53:41 America/New_York] PHP Parse error:  syntax error, unexpected '*' in /home/pasintlc/public_html/sites/all/themes/pasintl/node--product.tpl.php on line 95
+[14-Aug-2017 21:53:48 America/New_York] PHP Parse error:  syntax error, unexpected '*' in /home/pasintlc/public_html/sites/all/themes/pasintl/node--product.tpl.php on line 95
+[14-Aug-2017 21:54:16 America/New_York] PHP Parse error:  syntax error, unexpected '*' in /home/pasintlc/public_html/sites/all/themes/pasintl/node--product.tpl.php on line 95
+[14-Aug-2017 21:54:29 America/New_York] PHP Parse error:  syntax error, unexpected '*' in /home/pasintlc/public_html/sites/all/themes/pasintl/node--product.tpl.php on line 95
+[14-Aug-2017 22:00:53 America/New_York] PHP Parse error:  syntax error, unexpected '*' in /home/pasintlc/public_html/sites/all/themes/pasintl/node--product.tpl.php on line 95
+[14-Aug-2017 22:00:57 America/New_York] PHP Parse error:  syntax error, unexpected '*' in /home/pasintlc/public_html/sites/all/themes/pasintl/node--product.tpl.php on line 95
+[14-Aug-2017 22:01:19 America/New_York] PHP Parse error:  syntax error, unexpected '*' in /home/pasintlc/public_html/sites/all/themes/pasintl/node--product.tpl.php on line 95
+[14-Aug-2017 22:01:42 America/New_York] PHP Parse error:  syntax error, unexpected '*' in /home/pasintlc/public_html/sites/all/themes/pasintl/node--product.tpl.php on line 95
+[14-Aug-2017 22:02:51 America/New_York] PHP Parse error:  syntax error, unexpected '*' in /home/pasintlc/public_html/sites/all/themes/pasintl/node--product.tpl.php on line 95
+[14-Aug-2017 22:02:56 America/New_York] PHP Parse error:  syntax error, unexpected '*' in /home/pasintlc/public_html/sites/all/themes/pasintl/node--product.tpl.php on line 95
+[14-Aug-2017 22:04:05 America/New_York] PHP Parse error:  syntax error, unexpected '*' in /home/pasintlc/public_html/sites/all/themes/pasintl/node--product.tpl.php on line 95

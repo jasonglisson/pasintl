@@ -321,7 +321,7 @@
 			if (isset($section1title['und'][0]['value'])) {
 			print $section1title['und'][0]['value'];
 			}?></h2>
-				<div class="col-lg-4 col-md-4">
+				<div class="col-lg-3 col-md-3">
 					<div id="item1">
 							<div id="s1i1" class="round-btns">
 								<div style="background-image:url(/sites/default/files/<?php $section1img1 = $node->field_section_1_img_item_1;
@@ -335,7 +335,7 @@
 								}?></div>
 						</div>	
 				</div>
-				<div class="col-lg-4 col-md-4">
+				<div class="col-lg-3 col-md-3">
 					<div id="item2">
 							<div id="s1i2" class="round-btns">
 								<div style="background-image:url(/sites/default/files/<?php $section1img2 = $node->field_section_1_img_item_2;
@@ -349,7 +349,7 @@
 								}?></div> 
 						</div>	
 				</div>
-				<div class="col-lg-4 col-md-4"> 
+				<div class="col-lg-3 col-md-3"> 
 					<div id="item3">
 							<div id="s1i3" class="round-btns">
 								<div style="background-image:url(/sites/default/files/<?php $section1img3 = $node->field_section_1_img_item_3;
@@ -363,6 +363,20 @@
 								}?></div>
 						</div>	
 				</div> 	
+				<div class="col-lg-3 col-md-3"> 
+					<div id="item4">
+							<div id="s1i4" class="round-btns">
+								<div style="background-image:url(/sites/default/files/<?php $section1img4 = $node->field_section_1_img_item_4;
+								if (isset($section1img4['und'][0]['filename'])) {
+								print $section1img4['und'][0]['filename'];
+								}?>);" class="s1img"></div>
+							</div>
+							<div class="s1title"><?php $section1title4 = $node->field_section_1_img_title_4;
+								if (isset($section1title4['und'][0]['value'])) {
+								print $section1title4['und'][0]['value'];
+								}?></div>
+						</div>	
+				</div>				
 			</div>	
 		</div>	
 	</div><!-- #button-wrapper -->	
