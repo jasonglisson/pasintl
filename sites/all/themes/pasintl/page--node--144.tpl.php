@@ -893,6 +893,7 @@ print render($block['content']); ?>
 				</div>		  	
 		  	</div>		  	  	  		 	  	  
   	  </section>    
+<!--
 <section class="" id="section-fb">
 	<div class="container">  
 		<div class="col-lg-12 col-md-12">
@@ -904,7 +905,8 @@ print render($block['content']); ?>
 		?>
 		<div class="section-title text-right"><a href="/facebook" class="text-right">View All Facebook Post <span class="glyphicon glyphicon-chevron-right"></span></a></div>	  	  	   	    	    
 	</div>
-</section>			
+</section>	
+-->		
 <footer class="footer">
 	<div class="container">
 		<div id="footer-menu-wrapper" class="row">
