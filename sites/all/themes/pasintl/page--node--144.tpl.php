@@ -526,8 +526,8 @@
 				<span class="close glyphicon glyphicon-remove"></span>			
 				<div class="micro-product-img">
 					<div style="background-image:url(/sites/default/files/<?php $product4 = $node->field_product_4;
-					if (isset($product4['und'][0]['entity']->uc_product_image['und'][0]['uri'])) {
-					print $product4['und'][0]['entity']->uc_product_image['und'][0]['uri'];
+					if (isset($product4['und'][0]['entity']->uc_product_image['und'][0]['filename'])) {
+					print $product4['und'][0]['entity']->uc_product_image['und'][0]['filename'];
 					}?>);"></div>
 				</div>				
 				<h2><?php $product4 = $node->field_product_4;
