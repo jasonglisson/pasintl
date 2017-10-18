@@ -1,0 +1,129 @@
+/* Homepage */
+
+.front {
+  .front-header {
+  	padding-top: 115px;
+  	background: #ddd url(../images/topbg.jpg);
+  	background-size: cover;
+  	background-position: bottom center;
+  	.content {
+    	font-family: 'Roboto', sans-serif;
+    	font-size: 42px;
+    	font-weight: 100;
+    	line-height: 44px;
+    	text-transform: uppercase;
+    	text-align: center;
+    	color: #fff;
+    }
+	}
+	.page-header {
+	  display:none;
+  }
+  #middle-content {
+	  position: relative;
+  }
+}
+
+/* Product Search Results */
+.teaser-body {
+	float: left;
+	width: 620px;
+	margin: 0 0 10px 15px;
+}
+
+.teaser {
+	margin-top: 15px;
+	float: left;
+	border-bottom: 1px dashed #ddd;
+	padding-bottom: 15px;
+}
+
+.teaser .uc-price {
+/*
+	margin: 0 15px 15px 0px;
+	padding-left: 15px;
+	float: left;
+*/
+	width: 74%;
+	font-weight: bold;
+}
+
+.teaser .btn-success {
+	margin-left: 15px;
+	margin-right: 20px;	
+}
+
+.teaser a img {
+	float: left;
+}
+
+.teaser-wrap {
+	float:left;
+}
+
+.teaser-sell {
+	float:left;
+}
+
+
+/* Cart page */ 
+
+#uc-cart-view-form a[href="http://pasintl.com/"] {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.428571429;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	color: #fff;
+	background-color: #428bca;
+	border-color: #357ebd;
+	margin-right:5px;
+}
+
+#uc-cart-view-form a[href="http://pasintl.com/"]:hover {
+	text-decoration: none;
+}
+
+#delivery-pane label, #billing-pane label {
+	text-align: left;
+}
+
+.page-node-633 .links {
+	display:none;
+}
+
+
+/* Contact Page */
+
+#block-webform-client-block-639 {
+  .form-control {
+	  margin-bottom:15px;
+	}
+  .form-textarea {
+  	margin-bottom:0;
+  }
+	.webform-component-textarea {
+	  margin-bottom:15px;
+  }
+  .form-item {
+	  margin-bottom:15px;
+  }
+}
+
+
+#block-system-main .links a {
+	display:none;
+}

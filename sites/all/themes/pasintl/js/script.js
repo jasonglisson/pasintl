@@ -1,5 +1,7 @@
 jQuery(document).ready(function(){
 
+  jQuery('a').attr('href').replace('pasintl.com','pasintl.docksal');
+
 	function parallax(){
 	    var scrolled = jQuery(window).scrollTop();
 	    jQuery('.front-header').css('background-position-y', -(scrolled * 0.5) + 'px');	 

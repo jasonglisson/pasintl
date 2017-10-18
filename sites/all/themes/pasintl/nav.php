@@ -37,8 +37,10 @@ $searchform = drupal_get_form('search_block_form'); ?>
 					    <span class="glyphicon glyphicon-shopping-cart"></span>
 						<?php
 						  $items = 0;
-						  foreach (uc_cart_get_contents() as $item) {
-						    $items += $item->qty;
+						  if(module_exists('uc_cart')){
+  						  foreach (uc_cart_get_contents() as $item) {
+  						    $items += $item->qty;
+  						  }
 						  }
 						print $items;
 						?>
