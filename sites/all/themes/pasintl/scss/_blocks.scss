@@ -1,0 +1,250 @@
+/* Product Services Block */
+
+.product-services-block {
+  width: 100%;
+  height: 375px;	
+  padding: 25px;
+  margin-bottom: 14px;
+  transition: .5s all;
+  cursor: pointer;
+  
+  a {
+    display: block;
+    height: 100%;	
+    &:hover {
+      text-decoration: none;      
+    }
+  }
+  h2 {
+  	text-align: center;
+  	color: #fff;
+  }	
+
+  img {
+  	margin: 0 auto;	
+  	display: block;
+  }
+
+  .description p {
+  	color: #fff;
+  	text-align: center;
+  	font-size: 1.9rem;
+  }
+
+  
+  &:hover {
+    opacity: .75;
+  }
+}	
+
+.product-services-block.block-1 {
+  background-color: #98c9d6;	
+}
+
+.product-services-block.block-2 {
+  background-color: #F3AC1E;	
+}
+
+.product-services-block.block-3 {
+  background-color: rgb(132, 147, 154);	
+  .description p {
+    color: #fff;
+    padding: 0 130px;
+  }	
+}
+
+.product-services-block.block-4 {
+  background-color: #2AB2CC;	
+  .description p {
+	  padding: 0 130px;
+  }
+}
+
+/* Microsite Facebook Section */
+
+#section-fb {
+	background:#fff;
+}
+
+.fb-item {
+	padding: 0px;
+	border: 1px solid #ddd;
+	margin:10px 0px;
+	border-radius:10px;
+	box-shadow: 0 0 9px #666;
+	overflow: hidden;
+}
+
+.front .fb-body, .microsite .fb-body{
+	padding:15px 15px 0 15px;
+	height:348px !important;
+	overflow:hidden;
+}
+
+.social-share {
+	border-top: 1px solid #dbdbdb;
+	border-bottom: 1px solid #dbdbdb;
+	padding: 5px 10px;
+	background: #ddd;
+	margin-top:10px;
+}
+
+.social-share iframe {
+	width: 56px;
+	height: 20px;
+	margin-top: 2px;
+	margin-bottom: -3px;	
+}
+
+.social-share .fb-share-button{
+	top: -4px;
+	position: relative;
+}
+
+#block-facebook-wall-facebook-wall .facebook_wall_outer{
+	margin:0 auto;
+	float:none;
+}
+
+#block-facebook-wall-facebook-wall .facebook_wall {
+	width:33.33333333333333% !important;
+	height:320px;
+	overflow:hidden;
+	margin-bottom:15px;
+}
+
+#block-facebook-wall-facebook-wall .facebook_wall iframe {
+	width:90%;
+}
+
+#block-facebook-wall-facebook-wall .wallContent_left {
+	width:0;
+	margin-top: 0px; 
+	padding-right: 0px;
+	min-height: 0px;	
+}
+
+#block-facebook-wall-facebook-wall .wallContent_left img {
+	display:none;
+}
+
+#block-facebook-wall-facebook-wall .wallContent_right {
+	width: 100%;
+}
+
+.fb-item .fb-header {
+	padding: 15px 15px 0px 15px;
+	height: 70px;
+	border-bottom: 1px solid #ddd;
+}
+
+.fb-item .fb-header span {
+	padding-top:4px;
+}
+
+.fb-item .fb-img {
+	width: 48px;
+	float: left;
+	margin-right:10px;
+}
+
+.fb-item .fb-name-date .fb-date{
+	color: #898f9c;
+	font-size:11px;
+}
+
+.fb-item .fb-body {
+	padding:15px;
+	height:auto;
+}
+
+#section-fb0 .section-title {
+	font-size: 2rem;
+	border-bottom: none;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	font-family: 'Roboto';
+	text-transform: uppercase;
+	color: #165672;
+}
+
+.page-facebook .item {
+	width: 44.5%;
+	float: left;	
+}	
+
+/* Fuel Cell Block on Homepage */
+
+#block-views-nodequeue-fuel-cells-block {
+	padding-bottom:20px;
+}
+
+.fuel-cell {
+	width:100%;
+	float:left;
+	padding-top:20px;
+	padding-bottom:20px;
+	border-bottom:1px solid #ddd;
+}
+
+.fuel-cell-img {
+	float:left;
+}
+
+.fuel-cell-content {
+	float: left;
+	width: 60%;
+	padding-left: 25px;
+}
+
+.fuel-cell-content h3 {
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+/* Featured Product Block */
+.featured-products {
+	padding:20px 0 0px 0;
+	background: #B6B6B6 url(../images/featuredbg.png) repeat-x;
+}
+
+.featured-products h2 {
+	font-size: 40px;
+	line-height: 44px;
+	margin-bottom: 29px;
+	text-transform: uppercase;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	color: #403d3c;
+	text-align: center;
+	margin-top: 34px;
+}
+
+.featured-title a{
+	color:#000;
+	font-size:2rem;	
+}
+
+.featured-body {
+	padding:5px 0;
+}
+
+.featured-cart {
+	padding-bottom:20px;
+}
+
+.featured-price {
+	padding-bottom:15px;
+	color:#000;
+	font-size:2rem;
+}
+
+.featured-image {
+	height: 158px;
+	overflow: hidden;	
+}
+
+.featured-image img{
+	position: relative;
+	top: -22px;	
+}

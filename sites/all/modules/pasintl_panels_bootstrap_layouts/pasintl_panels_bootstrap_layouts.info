@@ -1,6 +1,0 @@
-name = PasIntl Panels Bootstrap Layouts
-description = Panel's layouts using twitter bootstrap layout system as base.
-package = PAS Intl
-dependencies[] = panels
-core = 7.x
-version = 7.x-0.1

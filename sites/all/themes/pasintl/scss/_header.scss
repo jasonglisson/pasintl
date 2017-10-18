@@ -1,0 +1,64 @@
+.navbar-default {
+
+	background:url(/sites/all/themes/pasintl/images/navbg.png) !important;
+	border-color: #e7e7e7;
+}
+
+.navbar.container {
+	margin-top: 0px;
+}
+
+.navbar-nav>li>a {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-top: 27px !important;
+}
+
+.search {
+	float: right;
+	width: 110px;
+	margin-top: 6px;
+	position: absolute;
+	z-index: 4;
+	display: block;
+	right: 28px;
+	top: 24px;
+}
+
+nav .container {
+	padding: 10px 15px;
+}
+
+#cart-lg {
+	width: 75px;
+	float: left;
+	margin-top: 28px;
+	margin-left: 226px;
+	text-align: center;
+	padding: 0;
+	background: #D7D7D7;
+	transition: all .5s;
+	cursor: pointer;
+  .glyphicon-shopping-cart {
+  	float: left;
+  	margin-left: 14px;
+  	margin-right: -6px;
+  	text-align: right;
+  }	
+  a {
+  	display: block;
+  	padding: 8px;
+  	margin: 0px;
+  	&:hover {
+      text-decoration: none;
+      color:#428bca;    	
+  	}
+  }
+  &:hover {
+    background:#fff;
+  }
+}
+
+.search-result .search-info{
+	display:none;
+}
