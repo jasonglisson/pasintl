@@ -321,7 +321,7 @@
 			if (isset($section1title['und'][0]['value'])) {
 			print $section1title['und'][0]['value'];
 			}?></h2>
-				<div class="col-lg-4 col-md-4">
+				<div class="col-lg-3 col-md-3">
 					<div id="item1">
 							<div id="s1i1" class="round-btns">
 								<div style="background-image:url(/sites/default/files/<?php $section1img1 = $node->field_section_1_img_item_1;
@@ -335,7 +335,7 @@
 								}?></div>
 						</div>	
 				</div>
-				<div class="col-lg-4 col-md-4">
+				<div class="col-lg-3 col-md-3">
 					<div id="item2">
 							<div id="s1i2" class="round-btns">
 								<div style="background-image:url(/sites/default/files/<?php $section1img2 = $node->field_section_1_img_item_2;
@@ -349,7 +349,7 @@
 								}?></div> 
 						</div>	
 				</div>
-				<div class="col-lg-4 col-md-4"> 
+				<div class="col-lg-3 col-md-3"> 
 					<div id="item3">
 							<div id="s1i3" class="round-btns">
 								<div style="background-image:url(/sites/default/files/<?php $section1img3 = $node->field_section_1_img_item_3;
@@ -363,27 +363,46 @@
 								}?></div>
 						</div>	
 				</div> 	
+				<div class="col-lg-3 col-md-3"> 
+					<div id="item4">
+							<div id="s1i4" class="round-btns">
+								<div style="background-image:url(/sites/default/files/<?php $section1img4 = $node->field_section_1_img_item_4;
+								if (isset($section1img4['und'][0]['filename'])) {
+								print $section1img4['und'][0]['filename'];
+								}?>);" class="s1img"></div>
+							</div>
+							<div class="s1title"><?php $section1title4 = $node->field_section_1_img_title_4;
+								if (isset($section1title4['und'][0]['value'])) {
+								print $section1title4['und'][0]['value'];
+								}?></div>
+						</div>	
+				</div>				
 			</div>	
 		</div>	
 	</div><!-- #button-wrapper -->	
 	<div id="button-arrow">
 		<div class="container">
 		<div class="col-lg-12 col-md-12">
-			<div class="col-lg-4 col-md-4">
+			<div class="col-lg-3 col-md-3ß">
 				<div id="arrow1" class="arrow">
 					<div id="arrow-img"></div>
 				</div>
 			</div>	
-			<div class="col-lg-4 col-md-4">
+			<div class="col-lg-3 col-md-3">
 				<div id="arrow2" class="arrow">
 					<div id="arrow-img"></div>
 				</div>
 			</div>			
-			<div class="col-lg-4 col-md-4">
+			<div class="col-lg-3 col-md-3">
 				<div id="arrow3" class="arrow">
 					<div id="arrow-img"></div>
 				</div>
 			</div>	
+			<div class="col-lg-3 col-md-3">
+				<div id="arrow4" class="arrow">
+					<div id="arrow-img"></div>
+				</div>
+			</div>			
 		</div>	
 		</div>						
 	</div>		
@@ -402,9 +421,7 @@
 				print $product1['und'][0]['entity']->title;
 			}?></h2>
 			<div id="price">
-				<?php /* print uc_currency_format($node->sell_price);  */
-				  //print_r(uc_currency_format($product1['und'][0]['entity']->sell_price));
-				  //print_r(uc_currency_format($product1['und'][0]['entity']->list_price));				  
+				<?php /* print uc_currency_format($node->sell_price);  */			  
 					$sell_price = uc_currency_format($product1['und'][0]['entity']->sell_price);
 					$list_price = uc_currency_format($product1['und'][0]['entity']->list_price);
 					
@@ -441,9 +458,19 @@
 					if (isset($product2['und'][0]['entity']->title)) {
 					print $product2['und'][0]['entity']->title;
 				}?></h2>
-				<div id="price">
-					<?php print uc_currency_format($product2['und'][0]['entity']->price); ?>
-				</div>	
+			<div id="price">
+				<?php /* print uc_currency_format($node->sell_price);  */			  
+					$sell_price = uc_currency_format($product2['und'][0]['entity']->sell_price);
+					$list_price = uc_currency_format($product2['und'][0]['entity']->list_price);
+					
+					if ($sell_price < $list_price) {
+						echo "<div class=\"price-box\">Price: <span class=\"offer-price\">" . $list_price . "</span><span class=\"sale-price\"> " . $sell_price . "</span>
+	</div>";
+					} else {
+						echo "Price: " . uc_currency_format($product2['und'][0]['entity']->sell_price);
+					}
+				?>
+			</div>
 			<?php
 				$node2 = node_load($product2['und'][0]['entity']->nid);
 				$add_to_cart = array(
@@ -469,9 +496,19 @@
 					if (isset($product3['und'][0]['entity']->title)) {
 					print $product3['und'][0]['entity']->title;
 				}?></h2>
-				<div id="price">
-					<?php print uc_currency_format($product3['und'][0]['entity']->price); ?>
-				</div>	
+			<div id="price">
+				<?php /* print uc_currency_format($node->sell_price);  */			  
+					$sell_price = uc_currency_format($product3['und'][0]['entity']->sell_price);
+					$list_price = uc_currency_format($product3['und'][0]['entity']->list_price);
+					
+					if ($sell_price < $list_price) {
+						echo "<div class=\"price-box\">Price: <span class=\"offer-price\">" . $list_price . "</span><span class=\"sale-price\"> " . $sell_price . "</span>
+	</div>";
+					} else {
+						echo "Price: " . uc_currency_format($product3['und'][0]['entity']->sell_price);
+					}
+				?>
+			</div>
 				<?php
 				$node3 = node_load($product3['und'][0]['entity']->nid);
 				$add_to_cart = array(
@@ -484,7 +521,45 @@
 				if (isset($product3['und'][0]['entity']->field_short_description['und'][0]['value'])) {
 				print $product3['und'][0]['entity']->field_short_description['und'][0]['value'];
 				}?>		
-			</div>		
+			</div>	
+			<div id="item4-content" class="container">
+				<span class="close glyphicon glyphicon-remove"></span>			
+				<div class="micro-product-img">
+					<div style="background-image:url(/sites/default/files/<?php $product4 = $node->field_product_4;
+					if (isset($product4['und'][0]['entity']->uc_product_image['und'][0]['filename'])) {
+					print $product4['und'][0]['entity']->uc_product_image['und'][0]['filename'];
+					}?>);"></div>
+				</div>				
+				<h2><?php $product4 = $node->field_product_4;
+					if (isset($product4['und'][0]['entity']->title)) {
+					print $product4['und'][0]['entity']->title;
+				}?></h2>
+			<div id="price">
+				<?php /* print uc_currency_format($node->sell_price);  */			  
+					$sell_price = uc_currency_format($product4['und'][0]['entity']->sell_price);
+					$list_price = uc_currency_format($product4['und'][0]['entity']->list_price);
+					
+					if ($sell_price < $list_price) {
+						echo "<div class=\"price-box\">Price: <span class=\"offer-price\">" . $list_price . "</span><span class=\"sale-price\"> " . $sell_price . "</span>
+	</div>";
+					} else {
+						echo "Price: " . uc_currency_format($product4['und'][0]['entity']->sell_price);
+					}
+				?>
+			</div>
+				<?php
+				$node4 = node_load($product4['und'][0]['entity']->nid);
+				$add_to_cart = array(
+				  '#theme' => 'uc_product_add_to_cart',
+				  '#form' => drupal_get_form('uc_product_add_to_cart_form_' . $product4['und'][0]['entity']->nid, $node4),
+				);
+				print drupal_render($add_to_cart);				
+				?>					
+				<?php $product4 = $node->field_product_4;
+				if (isset($product4['und'][0]['entity']->field_short_description['und'][0]['value'])) {
+				  print $product4['und'][0]['entity']->field_short_description['und'][0]['value'];
+				}?>		
+			</div>					
 		</div>		
 	</div>
 </section>	    
@@ -818,6 +893,7 @@ print render($block['content']); ?>
 				</div>		  	
 		  	</div>		  	  	  		 	  	  
   	  </section>    
+<!--
 <section class="" id="section-fb">
 	<div class="container">  
 		<div class="col-lg-12 col-md-12">
@@ -829,7 +905,8 @@ print render($block['content']); ?>
 		?>
 		<div class="section-title text-right"><a href="/facebook" class="text-right">View All Facebook Post <span class="glyphicon glyphicon-chevron-right"></span></a></div>	  	  	   	    	    
 	</div>
-</section>			
+</section>	
+-->		
 <footer class="footer">
 	<div class="container">
 		<div id="footer-menu-wrapper" class="row">

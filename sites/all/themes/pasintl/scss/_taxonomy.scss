@@ -1,0 +1,38 @@
+#taxonomy_accordion_2 {
+  h3.ui-accordion {
+  	padding:12px;
+  	border-bottom: dotted 1px #ddd;
+  	cursor: pointer;
+  	&:hover {
+      background:#eeeeee;    	
+  	}
+	}
+  h3.ui-accordion.active {
+  	background:#ddd;
+  }
+	
+}
+
+#taxonomy_accordion_2 div {
+  ul {
+  	list-style-type: none;
+  	padding:0;
+  	border-bottom: 1px dotted #ddd;
+  	background: #FDFDFD;
+    a {
+    	padding: 12px 15px;
+    	display:block;
+    	width:100%;
+    	&:hover {
+        text-decoration: none;
+        background:#ddd;      	
+    	}
+    }  	
+	}
+}
+
+#right-side-nav {
+	float: right;
+	width: 425px;
+	height: 35px;
+}

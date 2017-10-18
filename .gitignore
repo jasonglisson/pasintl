@@ -2,8 +2,12 @@
 sites/*/settings*.php
 
 # Ignore paths that contain user-generated content.
-#sites/*/files
+sites/*/files
 sites/*/private
 
 .DS_STORE
+<<<<<<< HEAD
 .htaccess
+=======
+.htaccess
+>>>>>>> 23d2949899d17fe08ffffb328a946375b5332f21

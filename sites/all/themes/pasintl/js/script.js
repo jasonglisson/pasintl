@@ -1,5 +1,7 @@
 jQuery(document).ready(function(){
 
+  jQuery('a').attr('href').replace('pasintl.com','pasintl.docksal');
+
 	function parallax(){
 	    var scrolled = jQuery(window).scrollTop();
 	    jQuery('.front-header').css('background-position-y', -(scrolled * 0.5) + 'px');	 
@@ -82,12 +84,6 @@ jQuery('.categories-menu ul li').click(function() {
     
     jQuery('.accordion-content-7.accordion-content-depth-2.ui-accordion-content').css('display', 'none');
     
-/*
-	jQuery('.accordion-header-7.has-children.item-depth-2').click(function(){
-    	jQuery('.accordion-content-7.accordion-content-depth-2.ui-accordion-content').css('display', 'block');
-		jQuery('.accordion-header-7.has-children.item-depth-2').toggleClass('ui-state-active');    	
-	});
-*/
 
 jQuery('.accordion-header.no-children.item-depth-2').click(function(){
      window.location=jQuery(this).find('a').attr('href'); 
@@ -114,7 +110,6 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
       e.preventDefault();
     });    
     
-    //jQuery('#block-accordion-menu-1').addClass('well');
     jQuery('.region-sidebar-first').removeClass('well');
    
     jQuery("#search-form").hover(function(){
@@ -123,20 +118,7 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
     }, function(){
         jQuery(this).stop().animate({'width': '114px'}, 300);
         jQuery('#cart-lg').fadeIn();        
-    });
-   
-/*
-	jQuery('#fixed-footer-toggle').click(function(){
-	  jQuery(this).animate({'top':'-165px'}, 350); 	  	  
-	  jQuery('#fixed-footer').stop().animate({'bottom':'0px'}, 350); 	  
-	  jQuery(this).addClass('active');  
-	});
-	jQuery('#fixed-footer-toggle.active').click(function(){
-      jQuery(this).animate({'top':'-20px'}, 340);
-	  jQuery('#fixed-footer').animate({'bottom':'-152px'}, 350); 
-	  jQuery(this).removeClass('active');
-    });	
-*/ 
+    }); 
     
     jQuery('#fixed-footer-toggle').click(function() {
 		jQuery('#fixed-footer').animate({'bottom':'0'}, 350);
@@ -150,6 +132,10 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
 	jQuery(".node-type-product-showcase td:contains('Yes')").html('<span class="glyphicon glyphicon-ok"></span>');
 	jQuery(".node-type-product-showcase td:contains('No')").html('<span class="glyphicon glyphicon-remove"></span>');
 
+	jQuery('.product-services-block').click(function(){
+		jQuery(this).find('a')[0].click();
+	});
+	
 
 //	Microsite scripts
 
@@ -201,20 +187,14 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
     	jQuery("#drawer-stoggle").toggleClass('active');
     });
     
-/*
-    jQuery('#micro-menu li').click(function(){
-		jQuery(this).toggleClass('active');		
-    });
-*/
-
-    
     jQuery(".micro-slide-obj2").fadeIn().animate({ marginLeft: "0"}, 1500);
     jQuery(".micro-slide-obj1").fadeIn().animate({ marginLeft: "-74"}, 2300);
     
 	jQuery("#s1i1").click(function() {
 		jQuery(this).toggleClass("active");
 		jQuery("#s1i2").removeClass("active");
-		jQuery("#s1i3").removeClass("active");	
+		jQuery("#s1i3").removeClass("active");
+		jQuery("#s1i4").removeClass("active");			
 		jQuery("#item1-content").fadeIn(); 		
 		jQuery("#dark-overlay").fadeIn();			
 	});
@@ -222,7 +202,8 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
 	jQuery("#s1i2").click(function() {
 		jQuery(this).toggleClass("active");
 		jQuery("#s1i1").removeClass("active");
-		jQuery("#s1i3").removeClass("active");	
+		jQuery("#s1i3").removeClass("active");
+		jQuery("#s1i4").removeClass("active");		
 		jQuery("#item2-content").fadeIn(); 		
 		jQuery("#dark-overlay").fadeIn();													
 	});
@@ -231,7 +212,17 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
 		jQuery(this).toggleClass("active");
 		jQuery("#s1i1").removeClass("active");
 		jQuery("#s1i2").removeClass("active");	
+		jQuery("#s1i4").removeClass("active");			
 		jQuery("#item3-content").fadeIn(); 		
+		jQuery("#dark-overlay").fadeIn();								
+	});
+
+	jQuery("#s1i4").click(function() {
+		jQuery(this).toggleClass("active");
+		jQuery("#s1i1").removeClass("active");
+		jQuery("#s1i2").removeClass("active");
+		jQuery("#s1i3").removeClass("active");			
+		jQuery("#item4-content").fadeIn(); 		
 		jQuery("#dark-overlay").fadeIn();								
 	});
 			
@@ -259,9 +250,11 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
 		jQuery("#item1-content").fadeOut(); 
 		jQuery("#item2-content").fadeOut();
 		jQuery("#item3-content").fadeOut();
+		jQuery("#item4-content").fadeOut();		
 		jQuery("#s1i1").removeClass("active");
 		jQuery("#s1i2").removeClass("active");	
-		jQuery("#s1i3").removeClass("active");					
+		jQuery("#s1i3").removeClass("active");	
+		jQuery("#s1i4").removeClass("active");						
 		jQuery("#dark-overlay").fadeOut();				 		
 	});
 	
@@ -269,7 +262,8 @@ jQuery('.accordion-header-7.has-children.item-depth-2').toggle(function () {
 		jQuery(this).fadeOut();
 		jQuery("#item1-content").fadeOut(); 
 		jQuery("#item2-content").fadeOut();
-		jQuery("#item3-content").fadeOut();		
+		jQuery("#item3-content").fadeOut();
+		jQuery("#item4-content").fadeOut();				
 		jQuery("#micro-video").fadeOut();
 		player.stopVideo();		 		
 	});

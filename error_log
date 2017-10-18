@@ -3,3 +3,102 @@
 [17-Mar-2016 18:26:49 America/New_York] PHP Fatal error:  Unsupported operand types in /home/pasintlc/public_html/modules/block/block.module on line 519
 [17-Mar-2016 21:44:26 America/New_York] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 79 bytes) in /home/pasintlc/public_html/sites/all/modules/token/token.module on line 990
 [17-Mar-2016 22:34:28 America/New_York] PHP Fatal error:  Call to undefined function dsm() in /home/pasintlc/public_html/sites/all/modules/ubercart/uc_order/templates/uc-order--customer.tpl.php on line 233
+[20-Apr-2016 14:16:30 America/Denver] PHP Warning:  Unknown: Input variables exceeded 1000. To increase the limit change max_input_vars in php.ini. in Unknown on line 0
+[20-Apr-2016 14:16:34 America/Denver] PHP Warning:  Unknown: Input variables exceeded 1000. To increase the limit change max_input_vars in php.ini. in Unknown on line 0
+[20-Jun-2016 20:40:15 America/New_York] PHP Fatal error:  Call to undefined function ctools_jump_menu_submit() in /home/pasintlc/public_html/includes/form.inc on line 1513
+[17-Jan-2017 19:42:56 America/New_York] PHP Fatal error:  Class 'JMS\Serializer\Annotation\Type' not found in /home/pasintlc/public_html/sites/all/libraries/anet_php_sdk/lib/net/authorize/util/SensitiveDataConfigType.php on line 6
+[17-Jan-2017 19:47:26 America/New_York] PHP Fatal error:  Class 'JMS\Serializer\Annotation\Type' not found in /home/pasintlc/public_html/sites/all/libraries/anet_php_sdk/lib/net/authorize/util/SensitiveDataConfigType.php on line 6
+[18-Jan-2017 21:03:43 America/New_York] PHP Fatal error:  Call to undefined function ctools_include() in /home/pasintlc/public_html/sites/all/modules/context/context.module on line 487
+[18-Jan-2017 21:45:14 America/New_York] PHP Fatal error:  Unsupported operand types in /home/pasintlc/public_html/sites/all/modules/ctools/page_manager/plugins/tasks/page.admin.inc on line 257
+[18-Jan-2017 21:45:17 America/New_York] PHP Fatal error:  Unsupported operand types in /home/pasintlc/public_html/sites/all/modules/ctools/page_manager/plugins/tasks/page.admin.inc on line 257
+[18-Jan-2017 21:45:18 America/New_York] PHP Fatal error:  Unsupported operand types in /home/pasintlc/public_html/sites/all/modules/ctools/page_manager/plugins/tasks/page.admin.inc on line 257
+[31-Jan-2017 09:46:59 America/New_York] PHP Fatal error:  Call to undefined function dsm() in /home/pasintlc/public_html/sites/all/themes/pasintl/templates/blocks/bean--product_services.tpl.php on line 2
+[31-Jan-2017 09:47:03 America/New_York] PHP Fatal error:  Call to undefined function dsm() in /home/pasintlc/public_html/sites/all/themes/pasintl/templates/blocks/bean--product_services.tpl.php on line 2
+[31-Jan-2017 09:47:14 America/New_York] PHP Fatal error:  Call to undefined function dsm() in /home/pasintlc/public_html/sites/all/themes/pasintl/templates/blocks/bean--product_services.tpl.php on line 2
+[31-Jan-2017 09:47:41 America/New_York] PHP Fatal error:  Call to undefined function dsm() in /home/pasintlc/public_html/sites/all/themes/pasintl/templates/blocks/bean--product_services.tpl.php on line 2
+[31-Jan-2017 09:47:48 America/New_York] PHP Fatal error:  Call to undefined function dsm() in /home/pasintlc/public_html/sites/all/themes/pasintl/templates/blocks/bean--product_services.tpl.php on line 2
+[01-May-2017 11:35:36 America/New_York] PHP Fatal error:  Call to undefined function quiz_question_feedback() in /home/pasintlc/public_html/sites/all/modules/quiz/modules/ajax_quiz/ajax_quiz.module on line 127
+[01-May-2017 11:36:07 America/New_York] PHP Fatal error:  Call to undefined function quiz_question_feedback() in /home/pasintlc/public_html/sites/all/modules/quiz/modules/ajax_quiz/ajax_quiz.module on line 127
+[01-May-2017 11:36:15 America/New_York] PHP Fatal error:  Call to undefined function quiz_question_feedback() in /home/pasintlc/public_html/sites/all/modules/quiz/modules/ajax_quiz/ajax_quiz.module on line 127
+[24-May-2017 19:33:55 America/New_York] PHP Fatal error:  Class 'JMS\Serializer\Annotation\Type' not found in /home/pasintlc/public_html/sites/all/libraries/anet_php_sdk/lib/net/authorize/util/SensitiveDataConfigType.php on line 6
+[24-May-2017 21:16:18 America/New_York] PHP Fatal error:  Class 'AuthorizeNetPaymentProfile' not found in /home/pasintlc/public_html/sites/all/modules/authnet/includes/authnet.types.inc on line 168
+[24-May-2017 21:23:24 America/New_York] PHP Fatal error:  Class 'JMS\Serializer\Annotation\Type' not found in /home/pasintlc/public_html/sites/all/libraries/anet_php_sdk/lib/net/authorize/util/SensitiveDataConfigType.php on line 6
+[24-May-2017 21:31:43 America/New_York] PHP Fatal error:  Class 'JMS\Serializer\Annotation\Type' not found in /home/pasintlc/public_html/sites/all/libraries/anet_php_sdk/lib/net/authorize/util/SensitiveDataConfigType.php on line 6
+[24-May-2017 21:47:05 America/New_York] PHP Fatal error:  Class 'JMS\Serializer\Annotation\Type' not found in /home/pasintlc/public_html/sites/all/libraries/anet_php_sdk/lib/net/authorize/util/SensitiveDataConfigType.php on line 6
+[25-May-2017 10:24:45 America/New_York] PHP Fatal error:  Class 'JMS\Serializer\Annotation\Type' not found in /home/pasintlc/public_html/sites/all/libraries/anet_php_sdk/lib/net/authorize/util/SensitiveDataConfigType.php on line 6
+[25-May-2017 10:25:25 America/New_York] PHP Fatal error:  Class 'JMS\Serializer\Annotation\Type' not found in /home/pasintlc/public_html/sites/all/libraries/anet_php_sdk/lib/net/authorize/util/SensitiveDataConfigType.php on line 6
+[18-Jun-2017 22:19:13 America/New_York] PHP Fatal error:  Call to undefined function entity_translation_language_load() in /home/pasintlc/public_html/includes/menu.inc on line 603
+[19-Jun-2017 06:11:15 America/New_York] PHP Fatal error:  Call to undefined function dsm() in /home/pasintlc/public_html/sites/all/themes/pasintl/templates/blocks/bean--product_services.tpl.php on line 2
+[19-Jun-2017 06:11:19 America/New_York] PHP Fatal error:  Call to undefined function dsm() in /home/pasintlc/public_html/sites/all/themes/pasintl/templates/blocks/bean--product_services.tpl.php on line 2
+[19-Jun-2017 06:11:47 America/New_York] PHP Fatal error:  Call to undefined function dsm() in /home/pasintlc/public_html/sites/all/themes/pasintl/templates/blocks/bean--product_services.tpl.php on line 2
+[19-Jun-2017 06:11:55 America/New_York] PHP Fatal error:  Call to undefined function dsm() in /home/pasintlc/public_html/sites/all/themes/pasintl/templates/blocks/bean--product_services.tpl.php on line 2
+[19-Jun-2017 06:14:19 America/New_York] PHP Fatal error:  Call to undefined function webform_menu_to_arg() in /home/pasintlc/public_html/includes/menu.inc on line 824
+[19-Jun-2017 06:14:40 America/New_York] PHP Fatal error:  Call to undefined function webform_menu_to_arg() in /home/pasintlc/public_html/includes/menu.inc on line 824
+[19-Jun-2017 06:14:50 America/New_York] PHP Fatal error:  Call to undefined function webform_menu_to_arg() in /home/pasintlc/public_html/includes/menu.inc on line 824
+[19-Jun-2017 06:38:14 America/New_York] PHP Fatal error:  Class 'JMS\Serializer\Annotation\Type' not found in /home/pasintlc/public_html/sites/all/libraries/anet_php_sdk/lib/net/authorize/util/SensitiveDataConfigType.php on line 6
+[19-Jun-2017 07:46:51 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 07:47:33 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 07:48:47 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 07:49:30 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 07:50:26 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 07:50:40 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 07:51:00 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 07:52:10 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 07:52:22 America/New_York] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 64 bytes) in /home/pasintlc/public_html/sites/all/modules/token/token.module on line 1005
+[19-Jun-2017 07:54:29 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 07:54:56 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 07:55:47 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:10:26 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:10:32 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:11:11 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:11:43 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:14:43 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:15:38 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:15:45 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:16:09 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:19:47 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:21:41 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:22:04 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:22:07 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:22:14 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:33:28 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:36:24 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:37:06 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:42:48 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:42:51 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:42:54 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:43:04 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:44:23 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:44:31 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:50:27 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:52:27 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:57:15 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:58:06 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 08:59:54 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 09:00:38 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 09:07:11 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 09:08:17 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 09:08:19 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 09:08:23 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 09:09:20 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 09:25:29 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 09:25:56 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 09:26:05 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 09:35:32 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 09:36:01 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 09:36:07 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 09:46:41 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 10:01:09 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 10:14:01 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 10:14:05 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 10:14:21 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 10:16:50 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 10:18:20 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 10:18:49 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 10:19:13 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 10:22:47 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 10:25:19 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 10:36:41 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 10:38:49 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[19-Jun-2017 10:38:51 America/New_York] PHP Fatal error:  Call to undefined function i18n_taxonomy_allowed_values() in /home/pasintlc/public_html/modules/taxonomy/taxonomy.module on line 1496
+[09-Aug-2017 07:20:33 America/New_York] PHP Fatal error:  Class 'UcCartItemController' not found in /home/pasintlc/public_html/includes/common.inc on line 8048

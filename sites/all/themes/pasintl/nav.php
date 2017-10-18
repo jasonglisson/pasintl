@@ -27,29 +27,20 @@ $searchform = drupal_get_form('search_block_form'); ?>
 			<?php if (!empty($primary_nav) || !empty($page['navigation'])): ?>
 			  <div class="navbar-collapse collapse">
 			    <nav role="navigation">
-<!--
-			      <?php if (!empty($primary_nav)): ?>
-			        <?php print render($primary_nav); ?>
-			      <?php endif; ?>
--->
-			<!--
-			      <?php if (!empty($secondary_nav)): ?>
-			        <?php print render($secondary_nav); ?>
-			      <?php endif; ?>
-			-->
 			      <?php if (!empty($page['navigation'])): ?>
 			        <?php print render($page['navigation']); ?>
 			      <?php endif; ?>
 			    </nav>
 			    <div id="right-side-nav" class="hidden-md hidden-xs">
-					<div id="language-selector"><a href="https://cl.pasintl.com/">SPANISH</a> <a title="PAS International English" href="https://pasintl.com/">ENGLISH</a></div>
 				    <div id="cart-lg" class="well well-sm">
 				    	<a href="/cart">
 					    <span class="glyphicon glyphicon-shopping-cart"></span>
 						<?php
 						  $items = 0;
-						  foreach (uc_cart_get_contents() as $item) {
-						    $items += $item->qty;
+						  if(module_exists('uc_cart')){
+  						  foreach (uc_cart_get_contents() as $item) {
+  						    $items += $item->qty;
+  						  }
 						  }
 						print $items;
 						?>

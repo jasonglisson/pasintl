@@ -1,0 +1,174 @@
+// Main Menu
+
+#block-system-main-menu, #block-menu-menu-spanish-main-menu  {
+	float:left;
+	margin-top: 30px;
+	.nav {
+	  float:left;  
+	  li {
+  	  float:left;
+	  }	
+	}
+	.nav>li.active>a {
+  	text-decoration: none;
+  	background-color: #eee;  	
+	}
+}
+
+/* Accordion Menu */
+
+#block-accordion-menu-1 {
+	display:none;
+}
+
+#block-accordion-menu-1 h3.ui-state-active {
+	background:#C5C5C5;	
+}
+
+#block-accordion-menu-1 .ui-corner-top {
+	-moz-border-radius-topleft: 0px/*{cornerRadius}*/;
+	-webkit-border-top-left-radius: 0px/*{cornerRadius}*/;
+	border-top-left-radius: 0px/*{cornerRadius}*/;
+	-moz-border-radius-topright: 0px/*{cornerRadius}*/;
+	-webkit-border-top-right-radius: 0px/*{cornerRadius}*/;
+	border-top-right-radius: 0px/*{cornerRadius}*/;
+}
+
+.accordion-menu-wrapper .accordion-header {
+	min-height:36px;
+	transition: all .2s;	
+}
+
+.accordion-menu-wrapper .accordion-header:hover {
+	background:#C5C5C5;	
+}
+
+.accordion-menu-wrapper .accordion-header.item-depth-2:hover {
+	background:#C5C5C5;	
+}
+
+.accordion-menu-wrapper .accordion-header.item-depth-3:hover {
+	background:#C5C5C5;	
+}
+
+.accordion-menu-wrapper .accordion-link {
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 1em !important;
+	font-size: 1.3rem;
+	display:block;
+	width:100%;
+	height:auto;
+}
+
+.accordion-menu-wrapper .ui-corner-all {
+	-moz-border-radius: 0px/*{cornerRadius}*/;
+	-webkit-border-radius: 0px/*{cornerRadius}*/;
+}
+
+.accordion-menu-wrapper .ui-state-default, .accordion-menu-wrapper .ui-widget-content .ui-state-default, .accordion-menu-wrapper .ui-widget-header .ui-state-default {
+	border-bottom: 1px solid #CCCCCC;
+	border-left:none;
+	border-top:none;
+	border-right:none;
+	background: none;
+	font-weight: normal/*{fwDefault}*/;
+	color: #555555/*{fcDefault}*/;
+	font-size: 1.3rem;	
+}
+
+.accordion-menu-wrapper .ui-state-active, .accordion-menu-wrapper .ui-widget-content .ui-state-active, .accordion-menu-wrapper .ui-widget-header .ui-state-active {
+	border-bottom: 1px solid #CCCCCC;
+	border-left:none;
+	border-top:none;
+	border-right:none;
+	background: none;
+	font-weight: normal/*{fwDefault}*/;
+	color: #555555/*{fcDefault}*/;
+	font-size: 1.3rem;	
+}
+
+.accordion-menu-wrapper .accordion-header-5.active-trail {
+	background: #DDD;
+}
+
+.accordion-menu-wrapper .has-children {
+	background: #F7F7F7;
+}
+
+.accordion-menu-wrapper .has-children.item-depth-2 {
+	background: #fafafa;
+}
+
+.accordion-menu-wrapper .has-children.item-depth-2 .ui-icon {
+	margin-left: 1.5em;
+	background-position: -32px 0px;	
+}
+
+.accordion-menu-wrapper .has-children.item-depth-2.ui-state-active .ui-icon {
+	background-position: -62px 0px;
+}
+
+.accordion-menu-wrapper .has-children.item-depth-2 span.accordion-link {
+	padding-left: 2.5em !important;
+}
+
+.accordion-menu-wrapper .ui-accordion-content.accordion-content-depth-2 a {
+	margin-left:2em;
+}
+
+.accordion-menu-wrapper .ui-accordion-content.accordion-content-depth-2 .item-depth-3 a {
+	margin-left:2em;
+}
+
+.accordion-menu-wrapper .ui-accordion-content.ui-accordion-content-active .accordion-header.active {
+	background: #C9C7C7;
+}
+
+.accordion-menu-wrapper .ui-accordion-content.ui-accordion-content-active .accordion-header.active a {
+	color:#00518C;
+}
+
+.accordion-menu-wrapper .no-children .ui-icon {
+	display:none;
+}
+
+.ui-accordion .ui-accordion-icons {
+	padding-left: 1.35em !important;
+}
+
+.accordion-menu-wrapper .ui-accordion-content {
+	padding: 0;
+	border-top: 0;
+	margin-top: -2px;
+	position: relative;
+	top: 1px;
+	margin-bottom: 2px;
+	overflow: auto;
+	display: none;
+	zoom: 1;
+}
+
+.accordion-menu-wrapper .ui-corner-bottom {
+	-moz-border-radius-bottomleft: 0px/*{cornerRadius}*/;
+	-webkit-border-bottom-left-radius: 0px/*{cornerRadius}*/;
+	border-bottom-left-radius:0px/*{cornerRadius}*/;
+	-moz-border-radius-bottomright: 0px/*{cornerRadius}*/;
+	-webkit-border-bottom-right-radius: 0px/*{cornerRadius}*/;
+	border-bottom-right-radius: 0px/*{cornerRadius}*/;
+}
+
+.accordion-menu-wrapper .accordion-header {
+	margin-top: 0px !important;
+}
+
+.accordion-menu-wrapper .ui-widget-content {
+	border: 0px solid #aaaaaa/*{borderColorContent}*/;
+	background: none/*{bgColorContent}*/ url(images/ui-bg_flat_75_ffffff_40x100.png)/*{bgImgUrlContent}*/ 50%/*{bgContentXPos}*/ 50%/*{bgContentYPos}*/ repeat-x/*{bgContentRepeat}*/;
+	height: auto !important;
+}
+
+.accordion-menu-wrapper .ui-widget-content li{
+	font-size: 15px;
+	font-family: 'roboto';
+}

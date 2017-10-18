@@ -45,8 +45,16 @@ function pasintl_preprocess_page(&$vars) {
 		$suggests,
 		array($type),
 		theme_get_suggestions($args, $type));
-	} 
+	}
+	
+	if (isset($variables['node']->type)) {
+   // If the content type's machine name is "my_machine_name" the file
+   // name will be "page--my-machine-name.tpl.php".
+   $variables['theme_hook_suggestions'][] = 'page__' . $variables['node']->type;
+  }	
+	 
 /*   drupal_add_js(drupal_get_path('theme', 'pasintl') .'/js/jquery.js', 'file');  */ 
+  drupal_add_js(drupal_get_path('theme', 'pasintl') .'/js/bootstrap.min.js', 'file');
   drupal_add_js(drupal_get_path('theme', 'pasintl') .'/js/jquery.sticky.js', 'file');
   drupal_add_js(drupal_get_path('theme', 'pasintl') .'/js/waypoints.min.js', 'file');  
   drupal_add_js(drupal_get_path('theme', 'pasintl') .'/js/waypoints-sticky.min.js', 'file');    
