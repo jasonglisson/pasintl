@@ -1,0 +1,276 @@
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+@media (max-width: 767px) {
+
+	#fixed-footer-wrapper {
+		display:block;
+	}
+
+	#fixed-footer #search-lang .span, #fixed-footer #search-lang .eng{
+		padding: 15px;
+		margin-top: 13px;
+		float: left;
+	}
+
+	.navbar .logo img {
+		width: 100px !important;
+	}
+
+	#micro-tagline {
+		font-size: 28px;
+	}
+
+	#micro-sub-video-text .text-wrapper {
+		width: 100%;
+		float: none;
+		margin-right: 0;
+		margin-top: 0;
+		padding: 20px 0;
+		font-size: 24px;
+		text-align: center;
+	}
+
+	#micro-menu {
+		border-bottom: 0;
+	}
+	#micro-menu ul {
+		display: none;
+		height: auto;
+	}
+	#micro-menu a#pull {
+		display: block;
+		background-color: #283744;
+		width: 100%;
+		position: relative;
+	}
+	#micro-menu a#pull:after {
+		content:"";
+		background: url(/sites/all/themes/pasintl/images/nav-icon.png) no-repeat;
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		position: absolute;
+		right: 15px;
+		top: 10px;
+	}
+	
+	#micro-menu { 
+  		height: auto;
+  	}
+  	#micro-menu ul {
+  		width: 100%;
+  		display: block;
+  		height: auto;
+  	}
+  	#micro-menu li {
+  		width: 50%;
+  		float: left;
+  		position: relative;
+  	}
+  	#micro-menu li a {
+		border-bottom: 1px solid #576979;
+		border-right: 1px solid #576979;
+	}
+  	#micro-menu a {
+	  	text-align: left;
+	  	width: 100%;
+	  	text-indent: 25px;
+  	}
+
+	.page-facebook .item {
+		width: 100%;
+		float: left;
+	}
+
+	#fixed-footer .btn-default  {
+		margin: 0px 0 !important;
+	}
+
+	#block-system-main-menu .nav, #block-menu-menu-spanish-main-menu .nav{
+		float: left;
+		width:100%;
+	}
+	
+	#block-system-main-menu .nav li, #block-menu-menu-spanish-main-menu .nav li{
+		float: left;
+		width:100%;
+		border-bottom:1px solid #C5C5C5;
+		background:#dddddd;
+	}
+	#block-system-main-menu .nav li a, #block-menu-menu-spanish-main-menu .nav li a{
+		float: left;
+		width:100%;
+		border-bottom:1px solid #C5C5C5;
+		background:#dddddd;
+		padding:15px;
+	}	
+}
+
+
+/* Mobile Footer */
+#footer-drawer-open {
+	width: 35px;
+	height: 55px;
+	background: #f8f8f8;
+	border-radius: 10px;
+	text-align: center;
+	padding-top: 6px;
+	font-size: 22px;
+	position: fixed;
+	float: right;
+	right: 14px;
+	bottom: -17px;
+	cursor: pointer;
+	border: solid 1px #ddd;		
+}
+
+#footer-drawer-close {
+	width: 35px;
+	height: 55px;
+	background: #f8f8f8;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	text-align: center;
+	padding-top: 6px;
+	font-size: 22px;
+	position: fixed;
+	float: right;
+	right: 14px;
+	bottom: -17px;
+	cursor: pointer;
+	border-bottom: none;
+	border-top-color: solid 1px #ddd;	
+}
+
+#footer-drawer .glyphicon-collapse-down {
+	display:none;
+}
+
+#footer-drawer-open:hover {
+	color:#428bca;
+}
+
+#footer-drawer-close {
+	color:#428bca;
+}
+
+#footer-drawer-open .glyphicon-collapse-down{
+	display:block;
+	margin: 1px 7px;
+	color:#428bca;	
+}
+
+#footer-drawer-close .glyphicon-collapse-up{
+	display:none;
+}
+
+#fixed-footer-wrapper {
+	display:none;
+}
+
+#fixed-footer #cart-lg {
+	width: 75px;
+	margin: 16px 15px 6px 16px;
+	text-align: center;
+	padding: 6px;
+	background: #D7D7D7;
+	transition: all .5s;
+	cursor: pointer;
+	float: right;
+}
+
+#fixed-footer-toggle {
+	position: fixed;
+	bottom: 0px;
+}
+#inner-footer-toggle {
+	bottom: 0px;
+	position: fixed;
+	display:none;
+	z-index:999;
+}
+.footer-toggle span {
+	color: #666;
+	float: right;
+	right: 12px;
+	background: #fff;
+	padding: 2px 0px 12px 5px;
+	border-radius: 4px;
+	width: 40px !important;
+}
+
+.footer-toggle {
+	height: 45px;
+	width: 100%;
+	font-size: 33px;	
+}
+
+#fixed-footer .visible-xs button {
+	margin: 0px !important;
+}
+
+#fixed-footer #language-selector {
+	float: left;
+	height: 50px;
+	margin-left: -6px;
+	padding-top: 15px;
+	width: 115px;
+}
+
+#fixed-footer #language-selector img {
+	width: 45px;
+}
+
+#fixed-footer{
+	position: fixed;
+	bottom: -152px;
+	background: #f8f8f8;
+	border-color: #e7e7e7;
+	width: 100%;
+	height: 162px;
+	z-index: 999;
+}
+
+#fixed-footer .search {
+	float: left;
+	width: auto;
+	margin: 15px;
+	position: absolute;
+	z-index: 4;
+	display: block;
+	right: 0px;
+	top: 0px;
+}
+
+#fixed-footer #search-lang img{
+	width: 30px;
+	margin: 18px;
+}
+
+#fixed-footer a:hover {
+	text-decoration: none;
+}
+
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) { 
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: @screen-md-min) { 
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: @screen-lg-min) { ... }
+
+/*Styles for screen 515px and lower*/
+@media only screen and (max-width : 480px) {
+
+}
+

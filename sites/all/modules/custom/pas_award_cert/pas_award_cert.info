@@ -1,0 +1,4 @@
+name = PAS Award Certificate
+description = Provides a way for the quiz to award certificates on the Quiz Results page
+core = 7.x
+package = PAS Intl
