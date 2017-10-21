@@ -1,0 +1,39 @@
+<?php
+/**
+ * Implements hook_quiz_result_update().
+ *
+ * Fired when a quiz is evaluated.
+ *
+ */
+function pas_award_cert_quiz_result_update($quiz, $score, $result_id) {  
+  $nid = $quiz->nid; 
+  $node = node_load($nid);
+  $quiz_passrate = $node->quiz->pass_rate;
+  $quiz_score = $quiz->score;
+
+  $uid = $quiz->uid;
+  $user = user_load($uid);
+  
+  $passed_quiz = $user->field_passed_quizzes['und'][0]['value'];
+  $quiz_array = explode(', ', $passed_quiz);  
+  
+  if($quiz_score >= $quiz_passrate){
+    if (in_array($nid, $quiz_array)) {
+      drupal_set_message('You\'ve already passed this test.  <a href="/node/' . $nid . '/certificate" target="_blank">Download your certificate here.</a>');   
+    } else {
+      drupal_set_message('You passed the test!  <a href="/node/' . $nid . '/certificate" target="_blank">Download your certificate here.</a>');         
+      $new_quiz = $passed_quiz . '' . $nid;      
+      $edit_user = (array) $user; 
+      $edit_user['field_passed_quizzes']['und'][0]['value'] = $new_quiz . ', ';
+      user_save($user, $edit_user);    
+    } 
+  } else {
+    drupal_set_message('You did not pass this test. Please retake it to get your certification.', 'error');   
+  }   
+
+
+  //1. After user takes quiz, evaluate if they have passed or not
+  //2. If they have passed, look up the field 'field_passed_quizzes' from the user, and see if the nid of the passed quiz is in this field.
+  //3. If the quiz nid exist, then no action is required. If the quiz nid does not exist, then get all values seperated by comma and add this nid to it.
+  
+}
