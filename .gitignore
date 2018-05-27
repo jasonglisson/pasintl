@@ -6,8 +6,5 @@ sites/*/files
 sites/*/private
 
 .DS_STORE
-<<<<<<< HEAD
 .htaccess
-=======
-.htaccess
->>>>>>> 23d2949899d17fe08ffffb328a946375b5332f21
+error_log
